@@ -1,6 +1,11 @@
+import sentry_sdk
+import dj_database_url
+
 from pathlib import Path
 from decouple import config
-import dj_database_url
+from decouple import Csv
+from dj_database_url import parse as dburl
+from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,7 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*', cast=Csv())
+
+ENV = config('ENV', default='localhost')
 
 # Apps
 INSTALLED_APPS = [
@@ -56,12 +63,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "fitapp.wsgi.application"
 
-# Banco de dados
 DATABASES = {
     'default': dj_database_url.parse(config("DATABASE_URL"))
 }
 
-# Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -69,14 +74,19 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# Internacionalização
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# Arquivos estáticos
 STATIC_URL = "static/"
 
-# Tipo de chave primária
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+sentry_sdk.init(
+    enviroment=ENV,
+    dsn=config('SENTRY_DSN', default=''),
+    integrations=[DjangoIntegration],
+    traces_sample_rate=1.0,
+    send_default_pii=True,
+)
