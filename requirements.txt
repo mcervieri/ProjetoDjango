@@ -1,0 +1,9 @@
+Django==5.2.6
+dj-database-url==3.0.1
+python-decouple==3.8
+
+# DEBUG
+ipython==9.5.0
+
+# Sentry
+sentry-sdk
