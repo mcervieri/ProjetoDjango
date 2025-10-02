@@ -3,3 +3,4 @@
 ruff
 coverage
 django-coverage
+model-bakery
