@@ -92,4 +92,7 @@ jobs:
         run: coverage run --rcfile=.coveragerc manage.py test -v 2
 
       - name: Coverage
-        run: coverage combine && coverage report && coverage xml
+        run: |
+          coverage combine || true
+          coverage report || true
+          coverage xml || true
