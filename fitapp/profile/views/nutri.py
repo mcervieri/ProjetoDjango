@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from profile.forms.nutri import NutriProfileForm
+from ..forms.nutri import NutriProfileForm
 
 
 def complete_nutri(request):

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from profile.forms.aluno import AlunoProfileForm
+from ..forms.aluno import AlunoProfileForm
 
 
 def complete_aluno(request):

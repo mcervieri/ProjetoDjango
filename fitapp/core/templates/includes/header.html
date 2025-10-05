@@ -1,0 +1,9 @@
+{% load static %}
+
+<header class="bg-white shadow px-6 py-4 flex justify-between items-center">
+  <h1 class="text-xl font-semibold text-gray-800">Painel FitApp</h1>
+  <div class="flex items-center gap-4">
+    <span class="text-gray-600 text-sm">Olá, {{ user.username }}</span>
+    <a href="{% url 'profile:logout' %}" class="text-red-500 hover:text-red-600 font-medium">Sair</a>
+  </div>
+</header>

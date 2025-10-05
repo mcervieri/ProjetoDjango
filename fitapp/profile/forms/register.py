@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from models.choices import RolesChoices, Profile
+from ..models import Profile
+from ..models.choices import RolesChoices
 
 
 class UserRegisterForm(forms.ModelForm):

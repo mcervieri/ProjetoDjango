@@ -17,13 +17,16 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*", cast=Csv())
 ENV = config("ENV", default="localhost")
 
 INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
     "django.contrib.contenttypes",
-    "profile",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "fitapp.core",
+    "fitapp.profile.apps.ProfileConfig",
 ]
 
-
-# Usuário customizado
-# AUTH_USER_MODEL = "profile.Profile"
 
 LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "/"
@@ -46,10 +49,11 @@ ROOT_URLCONF = "fitapp.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "fitapp" / "core" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -58,15 +62,15 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_DIRS = [
+    BASE_DIR / "fitapp" / "core" / "static",
+]
+
 WSGI_APPLICATION = "fitapp.wsgi.application"
 
 # Banco de dados principal (Postgres via DATABASE_URL)
 DATABASES = {"default": dj_database_url.parse(config("DATABASE_URL"))}
 
-# Banco de teste separado no Postgres
-if "test" in sys.argv:
-    test_name = "test_fit_app"
-    DATABASES["default"]["NAME"] = test_name
 
 # Validação de senha
 AUTH_PASSWORD_VALIDATORS = [

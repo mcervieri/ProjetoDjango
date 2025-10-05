@@ -1,0 +1,15 @@
+{% load static %}
+
+<aside class="w-64 bg-gray-900 text-gray-200 flex flex-col">
+  <div class="p-6 flex items-center gap-3">
+    <img src="{% static 'images/logo.svg' %}" alt="Logo" class="h-8 w-8">
+    <span class="font-semibold text-lg">FitApp</span>
+  </div>
+
+  <nav class="flex-1 px-4 space-y-2">
+    <a href="{% url 'profile:dashboard' %}" class="block px-3 py-2 rounded hover:bg-gray-800">🏠 Dashboard</a>
+    <a href="#" class="block px-3 py-2 rounded hover:bg-gray-800">💪 Treinos</a>
+    <a href="#" class="block px-3 py-2 rounded hover:bg-gray-800">🍎 Nutrição</a>
+    <a href="#" class="block px-3 py-2 rounded hover:bg-gray-800">👤 Perfil</a>
+  </nav>
+</aside>

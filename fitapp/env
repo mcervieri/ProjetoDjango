@@ -1,5 +1,5 @@
-SECRET_KEY="django-insecure-5m#u3@0o!3+6z!l7xw7i-9v#^u%@b0c+8u$z6e&1@*k3b7w#"
+SECRET_KEY="dev-secret"
 DEBUG=True
 ENV=localhost
 
-DATABASE_URL=postgres://marcocervieri:tua_senha@localhost:5432/fit_app
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/fit_app

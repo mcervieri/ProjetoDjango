@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from profile.forms.personal import PersonalProfileForm
+from ..forms.personal import PersonalProfileForm
 
 
 def complete_personal(request):

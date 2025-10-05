@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FitApp{% endblock %}</title>
+
+    <link rel="icon" href="{% static 'images/logo.svg' %}" type="image/svg+xml">
+    <link rel="stylesheet" href="{% static 'css/tailadmin.css' %}">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="flex min-h-screen">
+        {% include 'includes/sidebar.html' %}
+        <div class="flex-1 flex flex-col">
+            {% include 'includes/header.html' %}
+
+            <main class="p-6 flex-1">
+                {% block content %}{% endblock %}
+            </main>
+
+            {% include 'includes/footer.html' %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/tailadmin.js' %}"></script>
+</body>
+</html>
