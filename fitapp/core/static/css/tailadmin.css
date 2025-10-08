@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.bg-gray-900 {
+  background-color: #111827;
+}
+
+.bg-green-600 {
+  background-color: #16a34a;
+}
+
+.bg-green-700 {
+  background-color: #15803d;
+}
+
+.text-green-600 {
+  color: #16a34a;
+}
+
+.text-green-700 {
+  color: #15803d;
+}
+
+/* Botões */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* Cards dashboard */
+.card {
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Scrollbar minimalista */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}

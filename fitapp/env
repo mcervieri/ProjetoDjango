@@ -1,0 +1,5 @@
+SECRET_KEY="dev-secret"
+DEBUG=True
+ENV=localhost
+
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/fit_app
