@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from ..forms.personal import PersonalProfileForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def complete_personal(request):
     profile = request.user.profile
     if request.method == "POST":

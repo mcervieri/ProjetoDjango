@@ -28,9 +28,9 @@ INSTALLED_APPS = [
 ]
 
 
-LOGIN_URL = "users:login"
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "users:login"
+LOGIN_URL = "profile:login"
+LOGOUT_REDIRECT_URL = "profile:login"
+LOGIN_REDIRECT_URL = "profile:dashboard"
 
 # Middleware
 MIDDLEWARE = [

@@ -2,14 +2,29 @@
 
 <aside class="w-64 bg-gray-900 text-gray-200 flex flex-col">
   <div class="p-6 flex items-center gap-3">
-    <img src="{% static 'images/logo.svg' %}" alt="Logo" class="h-8 w-8">
+    <img src="{% static 'img/logo.png' %}" alt="Logo FitApp" class="h-8 w-8 object-contain">
     <span class="font-semibold text-lg">FitApp</span>
   </div>
 
   <nav class="flex-1 px-4 space-y-2">
-    <a href="{% url 'profile:dashboard' %}" class="block px-3 py-2 rounded hover:bg-gray-800">🏠 Dashboard</a>
-    <a href="#" class="block px-3 py-2 rounded hover:bg-gray-800">💪 Treinos</a>
-    <a href="#" class="block px-3 py-2 rounded hover:bg-gray-800">🍎 Nutrição</a>
-    <a href="#" class="block px-3 py-2 rounded hover:bg-gray-800">👤 Perfil</a>
+    <a href="{% url 'profile:dashboard' %}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800">
+      <img src="{% static 'img/dashboard_icon.png' %}" alt="Dashboard" class="h-5 w-5 object-contain">
+      <span>Dashboard</span>
+    </a>
+
+    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800">
+      <img src="{% static 'img/treino.png' %}" alt="Treinos" class="h-5 w-5 object-contain">
+      <span>Treinos</span>
+    </a>
+
+    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800">
+      <img src="{% static 'img/nutri.png' %}" alt="Nutrição" class="h-5 w-5 object-contain">
+      <span>Nutrição</span>
+    </a>
+
+    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800">
+      <img src="{% static 'img/perfil.png' %}" alt="Perfil" class="h-5 w-5 object-contain">
+      <span>Perfil</span>
+    </a>
   </nav>
 </aside>

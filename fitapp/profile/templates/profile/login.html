@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Login | FitApp{% endblock %}
-{% block content %}
 
-<div class="flex justify-center items-center min-h-screen bg-gray-100">
-  <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-darkbg">
+  <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 w-full max-w-md">
     <div class="text-center mb-6">
-      <img src="{% static 'images/logo.svg' %}" alt="Logo" class="mx-auto h-12 mb-3">
-      <h2 class="text-2xl font-bold text-gray-800">Bem-vindo de volta</h2>
+      <img src="{% static 'img/logo.png' %}" alt="Logo" class="mx-auto h-12 mb-3">
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Bem-vindo de volta</h2>
       <p class="text-gray-500 text-sm">Entre para continuar</p>
     </div>
 
@@ -15,22 +16,21 @@
       {{ form.non_field_errors }}
       {% for field in form %}
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">{{ field.label }}</label>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ field.label }}</label>
         {{ field }}
+        {% if field.errors %}
+          <p class="text-sm text-red-500 mt-1">{{ field.errors|join:", " }}</p>
+        {% endif %}
       </div>
       {% endfor %}
 
-      <button type="submit"
-        class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md font-semibold transition">
-        Entrar
-      </button>
-
-      <p class="text-center text-sm text-gray-600 mt-4">
-        Ainda não tem conta?
-        <a href="{% url 'profile:register' %}" class="text-green-600 hover:underline">Criar conta</a>
-      </p>
+      <button type="submit" class="btn-primary w-full">Entrar</button>
     </form>
+
+    <p class="text-center text-sm text-gray-600 mt-4 dark:text-gray-400">
+      Não tem conta?
+      <a href="{% url 'profile:register' %}" class="text-primary hover:underline">Registrar</a>
+    </p>
   </div>
 </div>
-
 {% endblock %}
