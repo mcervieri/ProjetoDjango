@@ -1,28 +1,19 @@
 {% extends "base.html" %}
-{% load static %}
 {% block title %}Excluir Usuário | FitApp{% endblock %}
-
 {% block content %}
 <div class="flex justify-center items-center min-h-screen bg-darkbg">
   <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 w-full max-w-md text-center">
-    <img src="{% static 'img/logo.png' %}" alt="Logo" class="mx-auto h-12 mb-4">
-    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-      Excluir Usuário
-    </h2>
-    <p class="text-gray-500 text-sm mb-6">
-      Tem certeza que deseja excluir o usuário
-      <span class="font-semibold text-primary">{{ user.username }}</span>?
-      <br>Esta ação <strong>não pode ser desfeita</strong>.
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Confirmar Exclusão</h2>
+    <p class="text-gray-600 dark:text-gray-400 mb-6">
+      Tem certeza que deseja excluir o usuário <strong>{{ user.username }}</strong>?
     </p>
 
-    <form method="POST" class="space-y-4">
+    <form method="POST" class="flex flex-col gap-4">
       {% csrf_token %}
-      <button type="submit"
-        class="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">
+      <button type="submit" class="bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">
         Confirmar Exclusão
       </button>
-      <a href="/admin/auth/user/"
-        class="block w-full text-gray-600 dark:text-gray-400 hover:underline text-sm">
+      <a href="{% url 'profile:user_list' %}" class="text-sm text-gray-500 hover:underline">
         Cancelar
       </a>
     </form>

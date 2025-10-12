@@ -16,23 +16,27 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*", cast=Csv())
 ENV = config("ENV", default="localhost")
 
+# --- APLICATIVOS ---
 INSTALLED_APPS = [
+    # Painel administrativo
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Apps do projeto
     "fitapp.core",
     "fitapp.profile.apps.ProfileConfig",
 ]
 
-
+# --- AUTENTICAÇÃO ---
 LOGIN_URL = "profile:login"
-LOGOUT_REDIRECT_URL = "profile:login"
 LOGIN_REDIRECT_URL = "profile:dashboard"
+LOGOUT_REDIRECT_URL = "profile:login"
 
-# Middleware
+# --- MIDDLEWARE ---
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -43,13 +47,16 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# URLs
+# --- URL ROOT ---
 ROOT_URLCONF = "fitapp.urls"
 
+# --- TEMPLATES ---
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "fitapp" / "core" / "templates"],
+        "DIRS": [
+            BASE_DIR / "fitapp" / "core" / "templates",  # base_adminlte.html e includes
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -62,17 +69,23 @@ TEMPLATES = [
     },
 ]
 
+# --- ARQUIVOS ESTÁTICOS ---
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    BASE_DIR / "fitapp" / "core" / "static",
+    BASE_DIR / "fitapp" / "core" / "static",  # onde ficarão adminlte/ e css/
 ]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# --- WSGI ---
 WSGI_APPLICATION = "fitapp.wsgi.application"
 
-# Banco de dados principal (Postgres via DATABASE_URL)
+# --- BANCO DE DADOS ---
 DATABASES = {"default": dj_database_url.parse(config("DATABASE_URL"))}
 
-
-# Validação de senha
+# --- VALIDAÇÃO DE SENHA ---
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
@@ -82,17 +95,16 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# Internacionalização
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
+# --- INTERNACIONALIZAÇÃO ---
+LANGUAGE_CODE = "pt-br"
+TIME_ZONE = "America/Sao_Paulo"
 USE_I18N = True
 USE_TZ = True
 
-# Arquivos estáticos
-STATIC_URL = "static/"
+# --- DEFAULTS ---
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Sentry
+# --- SENTRY ---
 sentry_sdk.init(
     environment=ENV,
     dsn=config("SENTRY_DSN", default=""),
@@ -101,7 +113,7 @@ sentry_sdk.init(
     send_default_pii=True,
 )
 
-# --- NoMigrations (para testes rápidos) ---
+# --- NOMIGRATIONS (para testes) ---
 if os.environ.get("NO_MIGRATIONS") == "1":
     MIGRATION_MODULES = {
         "core": None,
@@ -112,3 +124,50 @@ if os.environ.get("NO_MIGRATIONS") == "1":
         "social": None,
         "running": None,
     }
+
+# --- JAZZMIN SETTINGS ---
+JAZZMIN_SETTINGS = {
+    "custom_css": "/css/custom.css",
+    "site_title": "Painel Administrativo",
+    "site_header": "Admin",
+    "welcome_sign": "Bem-vindo ao painel",
+    "show_ui_builder": True,
+    "topmenu_links": [
+        {"name": "Início", "url": "admin:index", "permissions": ["auth.view_user"]},
+    ],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+    },
+    "related_modal_active": True,
+    "navigation_expanded": False,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "accent": "accent-success",
+    "navbar": "navbar-dark",
+    "navbar_fixed": True,
+    "no_navbar_border": True,
+    "layout_boxed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-success",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": True,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": True,
+    "theme": "darkly",
+    "dark_mode_theme": "darkly",
+    "button_classes": {
+        "primary": "btn-success",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+}

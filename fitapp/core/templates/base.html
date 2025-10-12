@@ -12,15 +12,27 @@
 <body class="bg-gray-100 text-gray-800">
 
     <div class="flex min-h-screen">
-        {% include 'includes/sidebar.html' %}
+
+        {# Só exibe o sidebar se o usuário estiver logado #}
+        {% if user.is_authenticated %}
+            {% include 'includes/sidebar.html' %}
+        {% endif %}
+
         <div class="flex-1 flex flex-col">
-            {% include 'includes/header.html' %}
+
+            {# Só exibe o header se o usuário estiver logado #}
+            {% if user.is_authenticated %}
+                {% include 'includes/header.html' %}
+            {% endif %}
 
             <main class="p-6 flex-1">
                 {% block content %}{% endblock %}
             </main>
 
-            {% include 'includes/footer.html' %}
+            {# Opcional: o footer também pode ficar visível só se logado #}
+            {% if user.is_authenticated %}
+                {% include 'includes/footer.html' %}
+            {% endif %}
         </div>
     </div>
 

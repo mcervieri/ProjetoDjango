@@ -6,4 +6,4 @@ from ._mixins import TailwindFormMixin
 class AlunoProfileForm(TailwindFormMixin, forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["height", "weight", "age", "goal"]
+        fields = ["height", "weight", "age", "goal", "bio", "photo"]

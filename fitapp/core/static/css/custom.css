@@ -1,0 +1,106 @@
+/* --- Cores principais --- */
+:root {
+    --primary: #3CE17C !important;
+    --accent: #3CE17C !important;
+    --success: #3CE17C !important;
+}
+
+/* --- Texto global branco --- */
+body, .content-wrapper, .card-body, .content, .table, .form-control, label, th, td, h1, h2, h3, h4, h5, h6, p, span {
+    color: #f5f5f5 !important;
+}
+
+/* --- Links e destaques --- */
+a, .nav-link.active {
+    color: #3CE17C !important;
+}
+a:hover {
+    color: #2cc76b !important;
+}
+
+/* --- Botões verdes --- */
+.btn-success, .btn-primary {
+    background-color: #3CE17C !important;
+    border-color: #3CE17C !important;
+    color: #111 !important;
+}
+.btn-success:hover, .btn-primary:hover {
+    background-color: #2cc76b !important;
+    border-color: #2cc76b !important;
+}
+
+/* --- Sidebar: item ativo e hover --- */
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link:hover {
+    background-color: #3CE17C !important;
+    color: #111 !important;
+}
+
+/* --- Sidebar compacta e legível --- */
+body .main-sidebar .nav-sidebar .nav-item .nav-link,
+body .main-sidebar .nav-sidebar .nav-header {
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+    padding: 6px 8px !important;
+    white-space: normal !important;
+    text-overflow: initial !important;
+    overflow: visible !important;
+    color: #fff !important;
+}
+
+/* --- Ícones menores e alinhados --- */
+body .main-sidebar .nav-sidebar .nav-icon {
+    font-size: 0.85rem !important;
+    margin-right: 5px !important;
+    color: #3CE17C !important;
+}
+
+/* --- Ajuste da largura da sidebar --- */
+body .main-sidebar {
+    width: 240px !important;
+}
+
+/* --- Espaçamento entre itens --- */
+body .main-sidebar .nav-sidebar .nav-item {
+    margin-bottom: 2px !important;
+}
+
+/* --- Navbar e branding --- */
+.navbar, .brand-link {
+    font-size: 14px !important;
+    color: #fff !important;
+}
+
+/* --- Remove bordas e sombras --- */
+.navbar, .brand-link, .card, .content-wrapper {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* --- Cartões e tabelas --- */
+.card {
+    background-color: #1e1e1e !important;
+    border-radius: 8px !important;
+}
+.card-header, .card-title {
+    color: #3CE17C !important;
+}
+.table th {
+    background-color: #111 !important;
+    color: #fff !important;
+}
+.table td {
+    background-color: #1a1a1a !important;
+}
+
+/* --- Scrollbar sutil --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #3CE17C;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+    background-color: #111;
+}

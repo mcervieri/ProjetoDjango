@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Usuários | FitApp{% endblock %}
+{% block content %}
+<div class="p-6">
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="text-2xl font-bold">Usuários</h1>
+    <form method="get" class="flex gap-2">
+      <input type="text" name="q" value="{{ q }}" placeholder="Buscar por username ou email"
+             class="border rounded-md px-3 py-2 dark:bg-gray-800 dark:text-gray-100" />
+      <button class="bg-primary text-white px-4 py-2 rounded-md">Buscar</button>
+    </form>
+  </div>
+
+  <div class="bg-white dark:bg-gray-900 rounded-xl shadow">
+    <table class="min-w-full text-left">
+      <thead class="text-sm text-gray-600 dark:text-gray-300">
+        <tr>
+          <th class="p-3">Foto</th>
+          <th class="p-3">Username</th>
+          <th class="p-3">Email</th>
+          <th class="p-3">Role</th>
+          <th class="p-3">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for u in users %}
+        <tr class="border-t border-gray-200 dark:border-gray-700">
+          <td class="p-3">
+            {% if u.profile.photo %}
+              <img src="{{ u.profile.photo.url }}" alt="" class="h-10 w-10 rounded-full object-cover" />
+            {% else %}
+              <div class="h-10 w-10 rounded-full bg-gray-200"></div>
+            {% endif %}
+          </td>
+          <td class="p-3">
+            <a href="{% url 'profile:user_detail' u.pk %}" class="text-primary hover:underline">
+              {{ u.username }}
+            </a>
+          </td>
+          <td class="p-3">{{ u.email }}</td>
+          <td class="p-3">{{ u.profile.get_role_display }}</td>
+          <td class="p-3">
+            <a href="{% url 'profile:user_detail' u.pk %}" class="text-sm text-primary hover:underline">Ver</a>
+            <span class="mx-2 text-gray-300">|</span>
+            <a href="{% url 'profile:confirm_delete' u.pk %}" class="text-sm text-red-600 hover:underline">Excluir</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5" class="p-4 text-center text-gray-500">Nenhum usuário encontrado.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

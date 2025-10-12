@@ -13,6 +13,8 @@ class Profile(BaseModel, SlugBaseModel):
         default=RolesChoices.ALUNO,
     )
 
+    bio = models.TextField(null=True, blank=True)
+    photo = models.ImageField(upload_to="profiles/%Y/%m/%d", null=True, blank=True)
     height = models.PositiveIntegerField(null=True, blank=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     age = models.PositiveIntegerField(null=True, blank=True)
@@ -30,10 +32,6 @@ class Profile(BaseModel, SlugBaseModel):
         return self.role == RolesChoices.ADMIN
 
     def save(self, *args, **kwargs):
-        """
-        Mantém o comportamento atual e adiciona a geração automática do slug global.
-        Usa o username do usuário como base.
-        """
         if not self.slug:
             from fitapp.core.utils.slug import generate_unique_slug
 

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Meu Perfil | FitApp{% endblock %}
+
+{% block content %}
+<div class="p-6 flex justify-center">
+  <div class="bg-white dark:bg-gray-900 rounded-2xl shadow p-8 w-full max-w-2xl">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+      {% if user_obj.profile.photo %}
+        <img src="{{ user_obj.profile.photo.url }}"
+             class="h-28 w-28 rounded-full object-cover border border-gray-300 dark:border-gray-700" />
+      {% else %}
+        <div class="h-28 w-28 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+      {% endif %}
+
+      <div class="text-center md:text-left">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{{ user_obj.username }}</h2>
+        <p class="text-gray-600 dark:text-gray-400">{{ user_obj.email }}</p>
+
+        <div class="mt-4 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+          <p><strong>Role:</strong> {{ user_obj.profile.get_role_display }}</p>
+          {% if user_obj.profile.city %}<p><strong>Cidade:</strong> {{ user_obj.profile.city }}</p>{% endif %}
+          {% if user_obj.profile.specialty %}<p><strong>Especialidade:</strong> {{ user_obj.profile.specialty }}</p>{% endif %}
+          {% if user_obj.profile.height %}<p><strong>Altura:</strong> {{ user_obj.profile.height }} m</p>{% endif %}
+          {% if user_obj.profile.weight %}<p><strong>Peso:</strong> {{ user_obj.profile.weight }} kg</p>{% endif %}
+          {% if user_obj.profile.age %}<p><strong>Idade:</strong> {{ user_obj.profile.age }}</p>{% endif %}
+          {% if user_obj.profile.goal %}<p><strong>Objetivo:</strong> {{ user_obj.profile.goal }}</p>{% endif %}
+          {% if user_obj.profile.cref %}<p><strong>CREF:</strong> {{ user_obj.profile.cref }}</p>{% endif %}
+        </div>
+
+        {% if user_obj.profile.bio %}
+          <div class="mt-4">
+            <h3 class="font-semibold text-gray-800 dark:text-gray-200">Bio</h3>
+            <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line">{{ user_obj.profile.bio }}</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="{% url 'profile:me_edit' %}"
+         class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+        Editar meu perfil
+      </a>
+
+      <a href="{% url 'profile:dashboard' %}"
+         class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600
+                text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+        Voltar ao dashboard
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

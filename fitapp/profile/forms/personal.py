@@ -6,4 +6,14 @@ from ._mixins import TailwindFormMixin
 class PersonalProfileForm(TailwindFormMixin, forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["height", "weight", "age", "goal", "cref", "city", "specialty"]
+        fields = [
+            "height",
+            "weight",
+            "age",
+            "goal",
+            "cref",
+            "city",
+            "specialty",
+            "bio",
+            "photo",
+        ]
