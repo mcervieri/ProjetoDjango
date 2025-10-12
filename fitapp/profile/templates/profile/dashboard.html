@@ -1,20 +1,75 @@
-{% extends 'base_adminlte.html' %}
-{% block title %}Dashboard{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | FitApp{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-  <h1 class="mb-4">Bem-vindo, {{ user.first_name }}!</h1>
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-header bg-success text-white">
-          <h3 class="card-title">Treinos</h3>
-        </div>
-        <div class="card-body">
-          Você tem {{ user.treinos.count|default:0 }} treinos ativos.
-        </div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+        <h3 class="card-title">Bem-vindo(a), {{ user.first_name|default:user.username }} 👋</h3>
       </div>
+      <div class="card-body">
+        <p class="mb-0 text-muted">
+          Sua dashboard estará disponível em breve.<br>
+          Aqui você verá seus treinos, planos alimentares e progresso.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>5</h3>
+        <p>Treinos Ativos</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-dumbbell"></i>
+      </div>
+      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>3</h3>
+        <p>Planos Nutricionais</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-apple-alt"></i>
+      </div>
+      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>2</h3>
+        <p>Metas Atingidas</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-trophy"></i>
+      </div>
+      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3>7</h3>
+        <p>Dias de Treino no Mês</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 </div>

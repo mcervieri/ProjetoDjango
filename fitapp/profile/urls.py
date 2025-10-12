@@ -16,8 +16,8 @@ urlpatterns = [
     path("complete/nutri/", nutri.complete_nutri, name="complete_nutri"),
     path("complete/personal/", personal.complete_personal, name="complete_personal"),
     # Páginas pessoais
-    path("me/", account.me_detail, name="me_detail"),
-    path("me/edit/", account.me_edit, name="me_edit"),
+    path("meu-perfil/", account.me_detail, name="me_detail"),
+    path("meu-perfil/editar/", account.me_edit, name="me_edit"),
     # Sucesso genérico
     path("success/", register.success, name="success"),
 ]

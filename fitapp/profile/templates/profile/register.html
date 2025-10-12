@@ -1,36 +1,43 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Registrar | FitApp{% endblock %}
-
-{% block content %}
-<div class="flex justify-center items-center min-h-screen bg-darkbg">
-  <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 w-full max-w-md">
-    <div class="text-center mb-6">
-      <img src="{% static 'images/logo.svg' %}" alt="Logo" class="mx-auto h-12 mb-3">
-      <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Crie sua conta</h2>
-      <p class="text-gray-500 text-sm">É rápido e gratuito</p>
-    </div>
-
-    <form method="POST" class="space-y-4">
-      {% csrf_token %}
-      {{ form.non_field_errors }}
-      {% for field in form %}
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ field.label }}</label>
-        {{ field }}
-        {% if field.errors %}
-          <p class="text-sm text-red-500 mt-1">{{ field.errors|join:', ' }}</p>
-        {% endif %}
+{% extends 'base.html' %} {% load static %} {% block title %}Registrar |
+FitApp{% endblock %} {% block body_class %}hold-transition register-page{%
+endblock %} {% block layout %}
+<div class="register-box">
+  <div class="register-logo">
+    <a href="{% url 'home' %}"><b>Fit</b>App</a>
+  </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Crie sua conta gratuita</p>
+      {% include 'includes/messages.html' %} {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {% for error in form.non_field_errors %}{{ error }}{% endfor %}
       </div>
-      {% endfor %}
-
-      <button type="submit" class="btn-primary w-full">Registrar</button>
-
-      <p class="text-center text-sm text-gray-600 mt-4 dark:text-gray-400">
-        Já tem conta?
-        <a href="{% url 'profile:login' %}" class="text-primary hover:underline">Entrar</a>
+      {% endif %}
+      <form method="post" novalidate>
+        {% csrf_token %} {% for field in form %}
+        <div class="form-group mb-3">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }} {% if field.help_text %}
+          <small class="form-text text-muted">{{ field.help_text }}</small>
+          {% endif %} {% if field.errors %}
+          <div class="invalid-feedback d-block">
+            {{ field.errors|join:' ' }}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">
+              Registrar
+            </button>
+          </div>
+        </div>
+      </form>
+      <p class="mt-3 text-center">
+        Já possui uma conta? <a href="{% url 'profile:login' %}">Entrar</a>
       </p>
-    </form>
+    </div>
   </div>
 </div>
 {% endblock %}

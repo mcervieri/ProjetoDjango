@@ -2,20 +2,18 @@ from django import forms
 from django.contrib.auth.models import User
 from ..models import Profile
 from ..models.choices import RolesChoices
-from ._mixins import TailwindFormMixin
+from ._mixins import AdminLTEFormMixin
 from django.core.exceptions import ValidationError
 
 
-class UserRegisterForm(TailwindFormMixin, forms.ModelForm):
+class UserRegisterForm(AdminLTEFormMixin, forms.ModelForm):
     password1 = forms.CharField(label="Senha", widget=forms.PasswordInput)
     password2 = forms.CharField(
         label="Confirmação de Senha", widget=forms.PasswordInput
     )
     role = forms.ChoiceField(
         choices=[
-            (r.value, r.label)
-            for r in RolesChoices
-            if r.value != RolesChoices.ADMIN  # 🔒 não permite admin na tela
+            (r.value, r.label) for r in RolesChoices if r.value != RolesChoices.ADMIN
         ]
     )
 
