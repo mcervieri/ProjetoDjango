@@ -1,25 +1,37 @@
 {% extends "base.html" %}
 {% block title %}Completar Perfil - Aluno{% endblock %}
+{% block page_title %}Completar Perfil (Aluno){% endblock %}
 {% block content %}
-<div class="max-w-3xl mx-auto p-6">
-  <div class="card">
-    <h2 class="text-xl font-bold text-gray-800 mb-4">Completar Perfil (Aluno)</h2>
-
-    <form method="post" class="space-y-4">
-      {% csrf_token %}
-      {{ form.non_field_errors }}
-      {% for field in form %}
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ field.label }}</label>
-        {{ field }}
-        {% if field.errors %}
-          <p class="text-sm text-red-500 mt-1">{{ field.errors|join:", " }}</p>
-        {% endif %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+        <h3 class="card-title">Informe seus dados como aluno</h3>
       </div>
-      {% endfor %}
-
-      <button type="submit" class="btn-primary">Salvar</button>
-    </form>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+          {% for field in form %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+              {% endif %}
+              {% if field.errors %}
+                <div class="invalid-feedback d-block">{{ field.errors|join:' ' }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

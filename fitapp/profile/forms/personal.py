@@ -1,9 +1,9 @@
 from django import forms
 from ..models import Profile
-from ._mixins import TailwindFormMixin
+from ._mixins import AdminLTEFormMixin
 
 
-class PersonalProfileForm(TailwindFormMixin, forms.ModelForm):
+class PersonalProfileForm(AdminLTEFormMixin, forms.ModelForm):
     class Meta:
         model = Profile
         fields = [

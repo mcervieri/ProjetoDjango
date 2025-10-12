@@ -2,40 +2,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}FitApp{% endblock %}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}FitApp{% endblock %}</title>
 
-    <link rel="icon" href="{% static 'images/logo.svg' %}" type="image/svg+xml">
-    <link rel="stylesheet" href="{% static 'css/tailadmin.css' %}">
+  <link rel="icon" href="{% static 'images/logo.svg' %}" type="image/svg+xml">
+  <!-- AdminLTE -->
+  <link rel="stylesheet" href="{% static 'adminlte/plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/adminlte.min.css' %}">
+  {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="{% block body_class %}hold-transition sidebar-mini layout-fixed{% endblock %}">
+{% block layout %}
+  {% if user.is_authenticated %}
+  <div class="wrapper">
+    {% include 'includes/header.html' %}
+    {% include 'includes/sidebar.html' %}
 
-    <div class="flex min-h-screen">
-
-        {# Só exibe o sidebar se o usuário estiver logado #}
-        {% if user.is_authenticated %}
-            {% include 'includes/sidebar.html' %}
-        {% endif %}
-
-        <div class="flex-1 flex flex-col">
-
-            {# Só exibe o header se o usuário estiver logado #}
-            {% if user.is_authenticated %}
-                {% include 'includes/header.html' %}
-            {% endif %}
-
-            <main class="p-6 flex-1">
-                {% block content %}{% endblock %}
-            </main>
-
-            {# Opcional: o footer também pode ficar visível só se logado #}
-            {% if user.is_authenticated %}
-                {% include 'includes/footer.html' %}
-            {% endif %}
+    <div class="content-wrapper">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">{% block page_title %}Dashboard{% endblock %}</h1>
+            </div>
+            <div class="col-sm-6">
+              {% block breadcrumb %}{% endblock %}
+            </div>
+          </div>
         </div>
+      </div>
+
+      <section class="content">
+        <div class="container-fluid">
+          {% include 'includes/messages.html' %}
+          {% block content %}{% endblock %}
+        </div>
+      </section>
     </div>
 
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    {% include 'includes/footer.html' %}
+  </div>
+  {% else %}
+  <div class="content-wrapper" style="min-height: 100vh;">
+    <section class="content">
+      <div class="container py-5">
+        {% include 'includes/messages.html' %}
+        {% block content %}{% endblock %}
+      </div>
+    </section>
+  </div>
+  {% endif %}
+{% endblock %}
+
+<script src="{% static 'adminlte/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'adminlte/dist/js/adminlte.min.js' %}"></script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

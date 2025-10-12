@@ -1,21 +1,10 @@
-{% extends 'base_adminlte.html' %}
-{% block title %}Dashboard{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Dashboard | FitApp{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
 {% block content %}
-<div class="container-fluid">
-  <h1 class="mb-4">Bem-vindo, {{ user.first_name }}!</h1>
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-header bg-success text-white">
-          <h3 class="card-title">Treinos</h3>
-        </div>
-        <div class="card-body">
-          Você tem {{ user.treinos.count|default:0 }} treinos ativos.
-        </div>
-      </div>
-    </div>
+<div class="card card-outline card-primary">
+  <div class="card-body">
+    <p class="mb-0 text-muted">Sua dashboard estará disponível em breve.</p>
   </div>
 </div>
 {% endblock %}

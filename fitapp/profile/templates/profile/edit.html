@@ -1,42 +1,41 @@
 {% extends "base.html" %}
 {% block title %}Editar Meu Perfil | FitApp{% endblock %}
-{% load static %}
+{% block page_title %}Editar Perfil{% endblock %}
 
 {% block content %}
-<div class="p-6 flex justify-center">
-  <div class="bg-white dark:bg-gray-900 rounded-2xl shadow p-8 w-full max-w-2xl">
-    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Editar meu perfil</h2>
-
-    <form method="post" enctype="multipart/form-data" class="space-y-4">
-      {% csrf_token %}
-      {{ form.non_field_errors }}
-      {% for field in form %}
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            {{ field.label }}
-          </label>
-          {{ field }}
-          {% if field.help_text %}
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ field.help_text }}</p>
-          {% endif %}
-          {% for error in field.errors %}
-            <p class="text-sm text-red-600 mt-1">{{ error }}</p>
-          {% endfor %}
-        </div>
-      {% endfor %}
-
-      <div class="flex gap-3 pt-2">
-        <button type="submit"
-                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-          Salvar alterações
-        </button>
-        <a href="{% url 'profile:me_detail' %}"
-           class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600
-                  text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-          Cancelar
-        </a>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+        <h3 class="card-title">Atualize suas informações</h3>
       </div>
-    </form>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+          {% for field in form %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+              {% endif %}
+              {% if field.errors %}
+                <div class="invalid-feedback d-block">{{ field.errors|join:' ' }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <div class="d-flex flex-wrap">
+            <button type="submit" class="btn btn-primary mr-2 mb-2">Salvar alterações</button>
+            <a href="{% url 'profile:me_detail' %}" class="btn btn-default mb-2">Cancelar</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

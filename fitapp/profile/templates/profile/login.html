@@ -1,26 +1,75 @@
 {% extends 'base.html' %}
 {% block title %}Login | FitApp{% endblock %}
-{% block content %}
-<div class="p-6 flex justify-center">
-  <div class="bg-white dark:bg-gray-900 rounded-2xl shadow p-8 w-full max-w-md">
-    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Entrar</h2>
-    <form method="post" class="space-y-4">
-      {% csrf_token %}
-      <div>
-        <label class="block text-sm font-medium mb-1">Usuário</label>
-        <input type="text" name="username" required class="w-full rounded-md border px-3 py-2">
-      </div>
-      <div>
-        <label class="block text-sm font-medium mb-1">Senha</label>
-        <input type="password" name="password" required class="w-full rounded-md border px-3 py-2">
-      </div>
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
-        Entrar
-      </button>
-    </form>
-    <p class="text-center mt-4 text-sm">
-      Não tem conta? <a class="text-blue-600 hover:underline" href="{% url 'profile:register' %}">Registrar</a>
-    </p>
+{% block body_class %}hold-transition login-page{% endblock %}
+{% block layout %}
+<div class="login-box">
+  <div class="login-logo">
+    <a href="{% url 'home' %}"><b>Fit</b>App</a>
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Entre para acessar seu painel</p>
+      {% include 'includes/messages.html' %}
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          {% with username_class='form-control' %}
+            {% if form.errors.username %}
+              {% with username_class=username_class|add:' is-invalid' %}
+                {{ form.username.as_widget(attrs={'class': username_class, 'placeholder': 'Usuário'}) }}
+              {% endwith %}
+            {% else %}
+              {{ form.username.as_widget(attrs={'class': username_class, 'placeholder': 'Usuário'}) }}
+            {% endif %}
+          {% endwith %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        {% if form.errors.username %}
+          <div class="invalid-feedback d-block mb-2">
+            {{ form.errors.username|join:' ' }}
+          </div>
+        {% endif %}
+        <div class="input-group mb-3">
+          {% with password_class='form-control' %}
+            {% if form.errors.password %}
+              {% with password_class=password_class|add:' is-invalid' %}
+                {{ form.password.as_widget(attrs={'class': password_class, 'placeholder': 'Senha'}) }}
+              {% endwith %}
+            {% else %}
+              {{ form.password.as_widget(attrs={'class': password_class, 'placeholder': 'Senha'}) }}
+            {% endif %}
+          {% endwith %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        {% if form.errors.password %}
+          <div class="invalid-feedback d-block mb-2">
+            {{ form.errors.password|join:' ' }}
+          </div>
+        {% endif %}
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+          </div>
+        </div>
+      </form>
+
+      <p class="mb-0 text-center mt-3">
+        <a href="{% url 'profile:register' %}" class="text-center">Quero criar uma conta</a>
+      </p>
+    </div>
   </div>
 </div>
 {% endblock %}

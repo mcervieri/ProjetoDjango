@@ -1,17 +1,37 @@
-class TailwindFormMixin:
-    INPUT_CLASS = "block w-full rounded-lg border border-gray-300 bg-white text-gray-900 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-    SELECT_CLASS = INPUT_CLASS
-    TEXTAREA_CLASS = INPUT_CLASS + " min-h-[120px]"
+class AdminLTEFormMixin:
+    """Aplicação de classes padrão no estilo AdminLTE/Bootstrap."""
+
+    INPUT_CLASS = "form-control"
+    SELECT_CLASS = "form-control"
+    TEXTAREA_CLASS = "form-control"
+    FILE_CLASS = "form-control-file"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for name, field in self.fields.items():
             widget = field.widget
-            cls_now = widget.attrs.get("class", "")
-            base = self.INPUT_CLASS
-            if widget.__class__.__name__.lower().find("select") >= 0:
-                base = self.SELECT_CLASS
-            if widget.__class__.__name__.lower().find("textarea") >= 0:
-                base = self.TEXTAREA_CLASS
-            widget.attrs["class"] = f"{base} {cls_now}".strip()
+            widget_name = widget.__class__.__name__.lower()
+            existing = widget.attrs.get("class", "")
+
+            if "file" in widget_name:
+                base_class = self.FILE_CLASS
+            elif "textarea" in widget_name:
+                base_class = self.TEXTAREA_CLASS
+            elif "select" in widget_name:
+                base_class = self.SELECT_CLASS
+            elif widget.input_type == "checkbox":
+                base_class = "form-check-input"
+            else:
+                base_class = self.INPUT_CLASS
+
+            widget.attrs["class"] = " ".join(
+                cls for cls in [base_class, existing] if cls
+            )
             widget.attrs.setdefault("placeholder", field.label or name.capitalize())
+
+            if self.is_bound and self.errors.get(name):
+                # Adiciona o destaque de erro do Bootstrap quando necessário.
+                widget.attrs["class"] += " is-invalid"
+
+
+TailwindFormMixin = AdminLTEFormMixin

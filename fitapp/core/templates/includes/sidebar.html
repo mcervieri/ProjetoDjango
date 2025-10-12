@@ -1,75 +1,41 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <!-- Logo -->
-  <a href="/" class="brand-link text-center">
+  <a href="{% url 'profile:dashboard' %}" class="brand-link text-center">
     <span class="brand-text font-weight-light">FitApp</span>
   </a>
 
-  <!-- Sidebar -->
   <div class="sidebar">
-    <!-- User info -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <i class="fas fa-user-circle fa-2x text-white-50"></i>
       </div>
       <div class="info">
-        <a href="{% url 'profile:dashboard' %}" class="d-block">{{ user.first_name|default:user.username }}</a>
+        <a href="{% url 'profile:me_detail' %}" class="d-block">{{ user.first_name|default:user.username }}</a>
       </div>
     </div>
 
-    <!-- Sidebar Menu -->
     <nav class="mt-2">
+      {% with current_url=request.resolver_match.url_name %}
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-        <!-- Dashboard -->
         <li class="nav-item">
-          <a href="{% url 'profile:dashboard' %}" class="nav-link">
+          <a href="{% url 'profile:dashboard' %}" class="nav-link {% if current_url == 'dashboard' %}active{% endif %}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           </a>
         </li>
-
-        <!-- Nutrição -->
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-apple-alt"></i>
-            <p>Nutrição</p>
-          </a>
-        </li>
-
-        <!-- Treinos -->
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-dumbbell"></i>
-            <p>Treinos</p>
-          </a>
-        </li>
-
-        <!-- Perfil -->
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{% url 'profile:me_detail' %}" class="nav-link {% if current_url == 'me_detail' or current_url == 'me_edit' %}active{% endif %}">
             <i class="nav-icon fas fa-user"></i>
-            <p>Perfil</p>
+            <p>Meu Perfil</p>
           </a>
         </li>
-
-        <!-- Configurações (opcional) -->
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-cog"></i>
-            <p>Configurações</p>
-          </a>
-        </li>
-
-        <!-- Sair -->
         <li class="nav-item mt-3">
-          <a href="{% url 'profile:logout' %}" class="nav-link text-danger">
+          <a href="{% url 'profile:logout' %}" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Sair</p>
           </a>
         </li>
-
       </ul>
+      {% endwith %}
     </nav>
   </div>
-  <!-- /.sidebar -->
 </aside>
