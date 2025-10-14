@@ -6,19 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}FitApp{% endblock %}</title>
 
+    <!-- Ícone -->
     <link rel="icon" href="{% static 'images/logo.svg' %}" type="image/svg+xml" />
+
+    <!-- FontAwesome e AdminLTE -->
     <link rel="stylesheet" href="{% static 'adminlte/plugins/fontawesome-free/css/all.min.css' %}" />
     <link rel="stylesheet" href="{% static 'adminlte/dist/css/adminlte.min.css' %}" />
+
+    <!-- Tema Global (verde neon / escuro) -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+
     {% block extra_css %}{% endblock %}
   </head>
 
   <body class="{% block body_class %}hold-transition sidebar-mini layout-fixed{% endblock %}">
+
     {% block layout %}
       {% if user.is_authenticated %}
         <div class="wrapper">
+
+          <!-- Navbar -->
           {% include 'includes/header.html' %}
+
+          <!-- Sidebar -->
           {% include 'includes/sidebar.html' %}
 
+          <!-- Conteúdo Principal -->
           <div class="content-wrapper">
             <div class="content-header">
               <div class="container-fluid">
@@ -26,7 +39,9 @@
                   <div class="col-sm-6">
                     <h1 class="m-0">{% block page_title %}Dashboard{% endblock %}</h1>
                   </div>
-                  <div class="col-sm-6">{% block breadcrumb %}{% endblock %}</div>
+                  <div class="col-sm-6">
+                    {% block breadcrumb %}{% endblock %}
+                  </div>
                 </div>
               </div>
             </div>
@@ -39,14 +54,17 @@
             </section>
           </div>
 
+          <!-- Rodapé -->
           {% include 'includes/footer.html' %}
-        </div>
+
+        </div> <!-- /.wrapper -->
+
       {% else %}
-        <div class="content-wrapper" style="min-height: 100vh">
+        <!-- Layout público (login, registro, etc.) -->
+        <div class="content-wrapper" style="min-height: 100vh;">
           <section class="content">
             <div class="container py-5">
               {% include 'includes/messages.html' %}
-              <!-- apenas conteúdo “não autenticado”, sem bloco duplicado -->
               {% block content_guest %}{% endblock %}
             </div>
           </section>
@@ -54,9 +72,11 @@
       {% endif %}
     {% endblock %}
 
+    <!-- Scripts essenciais -->
     <script src="{% static 'adminlte/plugins/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'adminlte/dist/js/adminlte.min.js' %}"></script>
+
     {% block extra_js %}{% endblock %}
   </body>
 </html>

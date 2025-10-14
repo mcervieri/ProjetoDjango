@@ -11,3 +11,5 @@ sentry-sdk
 
 # Tests
 django-test-without-migrations
+
+django-jazzmin

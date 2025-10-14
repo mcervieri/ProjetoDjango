@@ -1,23 +1,34 @@
+{% load static %}
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+  <!-- Brand Logo -->
   <a href="{% url 'profile:dashboard' %}" class="brand-link text-center">
+    <img src="{% static 'images/logo.svg' %}" alt="FitApp Logo" class="brand-image img-circle elevation-3" style="opacity: .9">
     <span class="brand-text font-weight-light">FitApp</span>
   </a>
 
+  <!-- Sidebar -->
   <div class="sidebar">
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+    <!-- Painel do Usuário -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center border-bottom border-secondary">
       <div class="image">
         <i class="fas fa-user-circle fa-2x text-white-50"></i>
       </div>
-      <div class="info">
-        <a href="{% url 'profile:dashboard' %}" class="d-block">
+      <div class="info ms-2">
+        <a href="{% url 'profile:me_detail' %}" class="d-block text-white">
           {{ user.first_name|default:user.username }}
         </a>
+        <small class="text-muted">{{ user.email }}</small>
       </div>
     </div>
 
+    <!-- Menu -->
     <nav class="mt-2">
       {% with current_url=request.resolver_match.url_name %}
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <!-- Dashboard -->
         <li class="nav-item">
           <a href="{% url 'profile:dashboard' %}" class="nav-link {% if current_url == 'dashboard' %}active{% endif %}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -25,25 +36,26 @@
           </a>
         </li>
 
+        <!-- Perfil -->
         <li class="nav-item">
           <a href="{% url 'profile:me_detail' %}" class="nav-link {% if current_url == 'me_detail' or current_url == 'me_edit' %}active{% endif %}">
             <i class="nav-icon fas fa-user"></i>
-            <p>Perfil</p>
+            <p>Meu Perfil</p>
           </a>
         </li>
 
-        <p>Meu Perfil</p>
-        </a>
-        </li>
-
+        <!-- Logout -->
         <li class="nav-item mt-3">
-          <a href="{% url 'profile:logout' %}" class="nav-link">
+          <a href="{% url 'profile:logout' %}" class="nav-link text-danger">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Sair</p>
           </a>
         </li>
+
       </ul>
       {% endwith %}
     </nav>
+
   </div>
+  <!-- /.sidebar -->
 </aside>

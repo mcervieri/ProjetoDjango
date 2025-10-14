@@ -1,11 +1,33 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom">
-  <!-- Left navbar links -->
+{% load static %}
+<nav class="main-header navbar navbar-expand navbar-dark" style="background-color: #1e1e2d;">
+  <!-- Botão de toggle do menu -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+        <i class="fas fa-bars"></i>
+      </a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/" class="nav-link">Início</a>
+      <a href="{% url 'profile:dashboard' %}" class="nav-link text-white">Início</a>
+    </li>
+  </ul>
+
+  <!-- Menu do lado direito -->
+  <ul class="navbar-nav ml-auto">
+    <!-- Usuário logado -->
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button">
+        <i class="fas fa-user-circle"></i> {{ user.first_name|default:user.username }}
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a href="{% url 'profile:me_detail' %}" class="dropdown-item">
+          <i class="fas fa-user mr-2"></i> Meu Perfil
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="{% url 'profile:logout' %}" class="dropdown-item text-danger">
+          <i class="fas fa-sign-out-alt mr-2"></i> Sair
+        </a>
+      </div>
     </li>
   </ul>
 </nav>
