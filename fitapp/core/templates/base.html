@@ -9,12 +9,15 @@
     <!-- Ícone -->
     <link rel="icon" href="{% static 'images/logo.svg' %}" type="image/svg+xml" />
 
-    <!-- FontAwesome e AdminLTE -->
+    <!-- Fontes e Ícones -->
     <link rel="stylesheet" href="{% static 'adminlte/plugins/fontawesome-free/css/all.min.css' %}" />
+
+    <!-- AdminLTE -->
     <link rel="stylesheet" href="{% static 'adminlte/dist/css/adminlte.min.css' %}" />
 
-    <!-- Tema Global (verde neon / escuro) -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+    <!-- Tema Global FitApp (dark glass + neon green) -->
+    <link rel="stylesheet" href="{% static 'css/dark_theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
     {% block extra_css %}{% endblock %}
   </head>
@@ -23,56 +26,56 @@
 
     {% block layout %}
       {% if user.is_authenticated %}
-        <div class="wrapper">
+      <!-- === LAYOUT PRINCIPAL (usuário logado) === -->
+      <div class="wrapper">
 
-          <!-- Navbar -->
-          {% include 'includes/header.html' %}
+        <!-- HEADER -->
+        {% include 'includes/header.html' %}
 
-          <!-- Sidebar -->
-          {% include 'includes/sidebar.html' %}
+        <!-- SIDEBAR -->
+        {% include 'includes/sidebar.html' %}
 
-          <!-- Conteúdo Principal -->
-          <div class="content-wrapper">
-            <div class="content-header">
-              <div class="container-fluid">
-                <div class="row mb-2">
-                  <div class="col-sm-6">
-                    <h1 class="m-0">{% block page_title %}Dashboard{% endblock %}</h1>
-                  </div>
-                  <div class="col-sm-6">
-                    {% block breadcrumb %}{% endblock %}
-                  </div>
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="content-wrapper" style="background-color: #0b0b0f;">
+          <div class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2 align-items-center justify-content-between">
+                <div class="col-sm-6">
+                  <h1 class="m-0 text-neon">{% block page_title %}Dashboard{% endblock %}</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                  {% block breadcrumb %}{% endblock %}
                 </div>
               </div>
             </div>
-
-            <section class="content">
-              <div class="container-fluid">
-                {% include 'includes/messages.html' %}
-                {% block content %}{% endblock %}
-              </div>
-            </section>
           </div>
 
-          <!-- Rodapé -->
-          {% include 'includes/footer.html' %}
-
-        </div> <!-- /.wrapper -->
-
-      {% else %}
-        <!-- Layout público (login, registro, etc.) -->
-        <div class="content-wrapper" style="min-height: 100vh;">
-          <section class="content">
-            <div class="container py-5">
+          <section class="content px-3">
+            <div class="container-fluid">
               {% include 'includes/messages.html' %}
-              {% block content_guest %}{% endblock %}
+              {% block content %}{% endblock %}
             </div>
           </section>
         </div>
+
+        <!-- FOOTER -->
+        {% include 'includes/footer.html' %}
+
+      </div>
+      {% else %}
+      <!-- === LAYOUT PÚBLICO (login, registro, etc.) === -->
+      <div class="content-wrapper" style="min-height: 100vh; background-color: #0b0b0f;">
+        <section class="content d-flex align-items-center justify-content-center">
+          <div class="container py-5">
+            {% include 'includes/messages.html' %}
+            {% block content_guest %}{% endblock %}
+          </div>
+        </section>
+      </div>
       {% endif %}
     {% endblock %}
 
-    <!-- Scripts essenciais -->
+    <!-- === SCRIPTS ESSENCIAIS === -->
     <script src="{% static 'adminlte/plugins/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'adminlte/dist/js/adminlte.min.js' %}"></script>

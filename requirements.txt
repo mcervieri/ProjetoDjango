@@ -13,3 +13,4 @@ sentry-sdk
 django-test-without-migrations
 
 django-jazzmin
+Pillow

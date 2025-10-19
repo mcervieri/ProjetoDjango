@@ -1,143 +1,545 @@
-/* --- Cores principais --- */
 :root {
-    --primary: #3CE17C !important;
-    --accent: #3CE17C !important;
-    --success: #3CE17C !important;
+  --primary: #3CE17C !important;
+  --accent: #3CE17C !important;
+  --success: #3CE17C !important;
+  --background-dark: #111;
+  --background-card: #1e1e1e;
+  --text-light: #f5f5f5;
 }
 
-/* --- Texto global branco --- */
-body, .content-wrapper, .card-body, .content, .table, .form-control, label, th, td, h1, h2, h3, h4, h5, h6, p, span {
-    color: #f5f5f5 !important;
+/* ================== */
+/* BASE / GLOBAL STYLE */
+/* ================== */
+body,
+.content-wrapper,
+.card-body,
+.content,
+.table,
+.form-control,
+label,
+th,
+td,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  color: var(--text-light) !important;
 }
 
-/* --- Links e destaques --- */
-a, .nav-link.active {
-    color: #3CE17C !important;
+a,
+.nav-link.active {
+  color: var(--primary) !important;
 }
+
 a:hover {
-    color: #2cc76b !important;
+  color: #2cc76b !important;
 }
 
-/* --- Botões verdes --- */
-.btn-success, .btn-primary {
-    background-color: #3CE17C !important;
-    border-color: #3CE17C !important;
-    color: #111 !important;
-}
-.btn-success:hover, .btn-primary:hover {
-    background-color: #2cc76b !important;
-    border-color: #2cc76b !important;
+.btn-success,
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #111 !important;
+  font-weight: 600;
 }
 
-/* --- Sidebar: item ativo e hover --- */
-.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active,
-.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link:hover {
-    background-color: #3CE17C !important;
-    color: #111 !important;
+.btn-success:hover,
+.btn-primary:hover {
+  background-color: #2cc76b !important;
+  border-color: #2cc76b !important;
 }
 
-/* --- Sidebar compacta e legível --- */
+/* ============ */
+/* SIDEBAR */
+/* ============ */
+.main-sidebar {
+  background-color: #1e1e2d !important;
+  width: 240px !important;
+}
+
 body .main-sidebar .nav-sidebar .nav-item .nav-link,
 body .main-sidebar .nav-sidebar .nav-header {
-    font-size: 12px !important;
-    line-height: 1.1 !important;
-    padding: 6px 8px !important;
-    white-space: normal !important;
-    text-overflow: initial !important;
-    overflow: visible !important;
-    color: #fff !important;
+  font-size: 12px !important;
+  line-height: 1.1 !important;
+  padding: 6px 8px !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  color: #fff !important;
 }
 
-/* --- Ícones menores e alinhados --- */
-body .main-sidebar .nav-sidebar .nav-icon {
-    font-size: 0.85rem !important;
-    margin-right: 5px !important;
-    color: #3CE17C !important;
-}
-
-/* --- Ajuste da largura da sidebar --- */
-body .main-sidebar {
-    width: 240px !important;
-}
-
-/* --- Espaçamento entre itens --- */
 body .main-sidebar .nav-sidebar .nav-item {
-    margin-bottom: 2px !important;
+  margin-bottom: 2px !important;
 }
 
-/* --- Navbar e branding --- */
-.navbar, .brand-link {
-    font-size: 14px !important;
-    color: #fff !important;
+body .main-sidebar .nav-sidebar .nav-icon {
+  font-size: 0.85rem !important;
+  margin-right: 5px !important;
+  color: var(--primary) !important;
 }
 
-/* --- Remove bordas e sombras --- */
-.navbar, .brand-link, .card, .content-wrapper {
-    box-shadow: none !important;
-    border: none !important;
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link:hover {
+  background-color: var(--primary) !important;
+  color: #111 !important;
 }
 
-/* --- Cartões e tabelas --- */
+/* ============ */
+/* NAVBAR */
+/* ============ */
+.navbar,
+.brand-link {
+  font-size: 14px !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--text-light) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--primary) !important;
+}
+
+/* ============ */
+/* CARD / TABLE */
+/* ============ */
 .card {
-    background-color: #1e1e1e !important;
-    border-radius: 8px !important;
-}
-.card-header, .card-title {
-    color: #3CE17C !important;
-}
-.table th {
-    background-color: #111 !important;
-    color: #fff !important;
-}
-.table td {
-    background-color: #1a1a1a !important;
+  background-color: var(--background-card) !important;
+  border-radius: 8px !important;
+  border: none !important;
 }
 
-/* --- Scrollbar sutil --- */
+.card-header,
+.card-title {
+  color: var(--primary) !important;
+}
+
+.table th {
+  background-color: var(--background-dark) !important;
+  color: #fff !important;
+}
+
+.table td {
+  background-color: #1a1a1a !important;
+}
+
+/* ============ */
+/* SCROLLBAR */
+/* ============ */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #3CE17C;
-    border-radius: 4px;
+  background-color: var(--primary);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-track {
-    background-color: #111;
+  background-color: var(--background-dark);
 }
 
-/* --- Sidebar com azul-escuro e destaque no ativo --- */
-.main-sidebar {
-    background-color: #1e1e2d !important;
-}
-.nav-sidebar .nav-link.active {
-    background-color: #007bff !important;
-    color: #fff !important;
-}
-.nav-sidebar .nav-link:hover {
-    background-color: #0056b3 !important;
-    color: #fff !important;
-}
-
-body {
-  display: block !important;
-  position: relative !important;
+/* ============ */
+/* LOGIN PAGE */
+/* ============ */
+body.login-page {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1b1b1b 100%) !important;
+  overflow: hidden !important;
 }
 
-/* --- Ajustes de layout AdminLTE --- */
+/* === Card principal com moldura verde e efeito glass === */
+body.login-page .card {
+  background: rgba(17, 17, 17, 0.45) !important;          /* leve vidro escuro */
+  border: 2px solid rgba(60, 225, 124, 0.6) !important;   /* moldura verde */
+  border-radius: 12px !important;
+  box-shadow: 0 0 35px rgba(60, 225, 124, 0.25) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* corpo do card transparente */
+body.login-page .card .login-card-body {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 2rem !important;
+  color: var(--text-light) !important;
+}
+
+/* Título e textos */
+.login-card-body p,
+.login-card-body label,
+.login-card-body a,
+.login-card-body span {
+  color: var(--text-light) !important;
+}
+
+/* Campos brancos com bordas verdes */
+body.login-page .form-control {
+  background-color: #fff !important;
+  border: 2px solid var(--primary) !important;
+  color: #111 !important;
+  border-radius: 6px !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+body.login-page .form-control:focus {
+  border-color: #2cc76b !important;
+  box-shadow: 0 0 6px rgba(60, 225, 124, 0.4) !important;
+}
+
+/* Ícones no mesmo verde do botão */
+body.login-page .input-group-text {
+  background-color: #fff !important;
+  border: 2px solid var(--primary) !important;
+  border-left: none !important;
+  color: var(--primary) !important;
+  font-weight: 700;
+}
+
+/* Botão */
+body.login-page .btn-success {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #000 !important;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+body.login-page .btn-success:hover {
+  background-color: #2cc76b !important;
+  border-color: #2cc76b !important;
+}
+
+/* Links */
+body.login-page .login-card-body a {
+  color: var(--primary) !important;
+}
+
+body.login-page .login-card-body a:hover {
+  color: #2cc76b !important;
+}
+
+/* Checkbox */
+.icheck-success > input:first-child:checked + label::before {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Logo */
+.login-logo a {
+  color: var(--primary) !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(60, 225, 124, 0.4);
+}
+
+/* === Ícones dos campos de login no verde FitApp === */
+body.login-page .input-group-text span {d
+  color: var(--primary) !important;
+  text-shadow: 0 0 8px rgba(60, 225, 124, 0.4);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* Efeito hover suave (opcional) */
+body.login-page .input-group-text:hover span {
+  color: #2cc76b !important;
+  text-shadow: 0 0 10px rgba(60, 225, 124, 0.6);
+}
+
+/* ============ */
+/* STRUCTURE FIX */
+/* ============ */
 .main-header {
   border-bottom: none !important;
   box-shadow: none !important;
 }
 
 .content-wrapper {
-  background-color: #111 !important;
+  background-color: var(--background-dark) !important;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-  color: #f5f5f5 !important;
+/* === DASHBOARD NEON DARK === */
+body {
+  background-color: #0b0b0f !important;
+  color: #e0e0e0 !important;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: var(--primary) !important;
+/* Header */
+.card-neon {
+  background: linear-gradient(145deg, #141420, #0c0c12);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.neon-header {
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+}
+
+.neon-header i {
+  color: #39ff14;
+  margin-right: 8px;
+}
+
+/* Small Boxes */
+.neon-box {
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+}
+
+.neon-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px var(--glow);
+}
+
+.neon-box .inner h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.neon-box .inner p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Footer link */
+.small-box-footer {
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.small-box-footer:hover {
+  background: rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 5px #fff;
+}
+
+/* Neon Color Variants */
+.cyan {
+  background: linear-gradient(145deg, #00bcd4, #0097a7);
+  --glow: rgba(0, 188, 212, 0.8);
+}
+
+.green {
+  background: linear-gradient(145deg, #00e676, #00c853);
+  --glow: rgba(0, 230, 118, 0.8);
+}
+
+.yellow {
+  background: linear-gradient(145deg, #ffeb3b, #fdd835);
+  color: #222 !important;
+  --glow: rgba(255, 235, 59, 0.8);
+}
+
+.pink {
+  background: linear-gradient(145deg, #ff4081, #f50057);
+  --glow: rgba(255, 64, 129, 0.8);
+}
+
+/* Icon styling */
+.neon-box .icon {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 60px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: all 0.3s ease;
+}
+
+.neon-box:hover .icon {
+  color: #fff;
+  text-shadow: 0 0 15px var(--glow);
+}
+
+/* Scrollbar refinado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00bcd4, #00c853);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #101010;
+}
+
+/* === ANIMAÇÕES NEON === */
+
+/* brilho pulsante leve no hover */
+.neon-box:hover {
+  animation: glowPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { box-shadow: 0 0 15px var(--glow); }
+  to { box-shadow: 0 0 30px var(--glow); }
+}
+
+/* números com entrada suave */
+.count {
+  display: inline-block;
+  font-size: 2.6rem;
+  transition: all 0.4s ease;
+}
+
+/* === SIDEBAR NEON DARK === */
+.neon-sidebar {
+  background: linear-gradient(180deg, #0c0c12 0%, #0b0b0f 100%) !important;
+  border-right: 1px solid rgba(0, 255, 128, 0.15);
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.1);
+}
+
+.neon-brand {
+  background: rgba(0, 255, 128, 0.05);
+  border-bottom: 1px solid rgba(0, 255, 128, 0.15);
+}
+
+.neon-brand .brand-text {
+  color: #00e676;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(0, 255, 128, 0.6);
+}
+
+/* Usuário */
+.neon-user .text-neon {
+  color: #00e676;
+  text-shadow: 0 0 10px rgba(0, 255, 128, 0.8);
+}
+.username {
+  color: #fff;
+  font-weight: 500;
+}
+.user-email {
+  color: #9e9e9e;
+  font-size: 0.8rem;
+}
+
+/* Links */
+.nav-sidebar .nav-link {
+  color: #ccc;
+  transition: all 0.25s ease;
+}
+.nav-sidebar .nav-link:hover {
+  color: #00e676;
+  text-shadow: 0 0 6px rgba(0, 255, 128, 0.8);
+  background: rgba(0, 255, 128, 0.05);
+}
+
+/* Ativo */
+.nav-sidebar .nav-link.active {
+  background: rgba(0, 255, 128, 0.15);
+  border-left: 3px solid #00e676;
+  color: #00e676;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0, 255, 128, 0.8);
+}
+
+/* Ícones */
+.nav-icon {
+  margin-right: 8px;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+.nav-link:hover .nav-icon {
+  transform: scale(1.15);
+  text-shadow: 0 0 10px rgba(0, 255, 128, 0.7);
+}
+
+/* Logout */
+.nav-link.logout {
+  color: #ff4d4d !important;
+  transition: all 0.3s ease;
+}
+.nav-link.logout:hover {
+  color: #fff !important;
+  background: rgba(255, 77, 77, 0.1);
+  text-shadow: 0 0 8px #ff4d4d;
+}
+
+/* Scroll */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00e676, #00c853);
+  border-radius: 3px;
+}
+
+/* === HEADER NEON DARK === */
+.neon-header-top {
+  background: linear-gradient(90deg, #0c0c12, #0b0b0f);
+  border-bottom: 1px solid rgba(0, 255, 128, 0.25);
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.05);
+}
+
+.neon-header-top .nav-link {
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+.neon-header-top .nav-link:hover {
+  color: #00e676;
+  text-shadow: 0 0 6px rgba(0, 255, 128, 0.8);
+}
+
+/* Ícones no header */
+.neon-header-top .fa-bars,
+.neon-header-top .fa-user-circle,
+.neon-header-top .fa-home {
+  transition: all 0.3s ease;
+}
+.neon-header-top .nav-link:hover .fa-bars,
+.neon-header-top .nav-link:hover .fa-user-circle,
+.neon-header-top .nav-link:hover .fa-home {
+  transform: scale(1.1);
+  text-shadow: 0 0 10px rgba(0, 255, 128, 0.9);
+}
+
+/* Dropdown */
+.neon-dropdown {
+  background: #141420;
+  border: 1px solid rgba(0, 255, 128, 0.15);
+  box-shadow: 0 0 15px rgba(0, 255, 128, 0.15);
+}
+.neon-dropdown .dropdown-item:hover {
+  background: rgba(0, 255, 128, 0.05);
+  color: #00e676 !important;
+  text-shadow: 0 0 8px rgba(0, 255, 128, 0.8);
+}
+
+/* === FOOTER NEON DARK === */
+.neon-footer {
+  background: linear-gradient(90deg, #0c0c12, #0b0b0f);
+  border-top: 1px solid rgba(0, 255, 128, 0.25);
+  box-shadow: 0 -2px 15px rgba(0, 255, 128, 0.05);
+  color: #ccc;
+  font-size: 0.9rem;
+  padding: 0.75rem;
+}
+
+.neon-footer strong {
+  font-weight: 600;
+  color: #00e676;
+  text-shadow: 0 0 6px rgba(0, 255, 128, 0.7);
+}
+
+/* === ELEMENTOS GERAIS DE NEON === */
+.text-neon {
+  color: #00e676 !important;
+  text-shadow: 0 0 6px rgba(0, 255, 128, 0.6);
 }
 

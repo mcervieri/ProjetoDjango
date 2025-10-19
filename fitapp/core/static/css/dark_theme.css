@@ -1,0 +1,77 @@
+:root {
+  /* Paleta FitApp */
+  --fitapp-green: #3CE17C;
+  --fitapp-green-hover: #2cc76b;
+  --fitapp-dark-bg: #0d0d0d;
+  --fitapp-dark-card: #1e1e1e;
+  --fitapp-text-light: #f5f5f5;
+  --fitapp-shadow-green: rgba(60, 225, 124, 0.25);
+
+  /* Efeitos globais */
+  --fitapp-border-radius: 10px;
+  --fitapp-blur: 8px;
+  --fitapp-font: 'Inter', 'Poppins', sans-serif;
+}
+
+/* Tema base global */
+body {
+  font-family: var(--fitapp-font);
+  background: linear-gradient(135deg, var(--fitapp-dark-bg) 0%, #1b1b1b 100%);
+  color: var(--fitapp-text-light);
+}
+
+/* Links e botões */
+a {
+  color: var(--fitapp-green);
+}
+a:hover {
+  color: var(--fitapp-green-hover);
+}
+
+.btn-success, .btn-primary {
+  background-color: var(--fitapp-green);
+  border-color: var(--fitapp-green);
+  color: #000;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+.btn-success:hover, .btn-primary:hover {
+  background-color: var(--fitapp-green-hover);
+  border-color: var(--fitapp-green-hover);
+}
+
+/* Card padrão FitApp */
+.fitapp-card {
+  background: rgba(17, 17, 17, 0.45);
+  border: 2px solid rgba(60, 225, 124, 0.6);
+  border-radius: var(--fitapp-border-radius);
+  box-shadow: 0 0 35px var(--fitapp-shadow-green);
+  backdrop-filter: blur(var(--fitapp-blur));
+  -webkit-backdrop-filter: blur(var(--fitapp-blur));
+  padding: 2rem;
+}
+
+/* Inputs */
+.fitapp-input {
+  background-color: #fff;
+  border: 2px solid var(--fitapp-green);
+  color: #111;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+.fitapp-input:focus {
+  border-color: var(--fitapp-green-hover);
+  box-shadow: 0 0 6px var(--fitapp-shadow-green);
+}
+
+/* Ícones */
+.fitapp-icon {
+  color: var(--fitapp-green);
+  font-weight: 700;
+}
+
+/* Títulos */
+.fitapp-title {
+  color: var(--fitapp-green);
+  text-shadow: 0 0 10px rgba(60, 225, 124, 0.4);
+}
