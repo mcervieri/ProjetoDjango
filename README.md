@@ -5,7 +5,6 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-4.6-purple?logo=bootstrap)](https://getbootstrap.com/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38BDF8?logo=tailwind-css)](https://tailwindcss.com/)
 [![AdminLTE](https://img.shields.io/badge/AdminLTE-3.x-007bff?logo=html5)](https://adminlte.io/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ---
 
