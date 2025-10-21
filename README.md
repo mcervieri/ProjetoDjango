@@ -9,18 +9,18 @@
 
 ---
 
-📘 Sumário
+## 📘 Sumário
 1. [Visão Geral](#-visão-geral)
 2. [Configuração Inicial](#-configuração-inicial-do-ambiente)
    - [Ambiente Python](#-ambiente-python)
-   - [Ambiente Node (TailwindCSS)](#-ambiente-node-tailwind-css)
+   - [Ambiente Node (TailwindCSS)](#-ambiente-node-tailwindcss)
 3. [Execução Durante o Desenvolvimento](#-execução-durante-o-desenvolvimento)
 4. [Estrutura Visual](#-estrutura-visual)
 5. [Observações Importantes](#-observações-importantes)
 
 ---
 
-💡 Visão Geral
+## 💡 Visão Geral
 O **FitApp** é um projeto Django que combina o poder do **AdminLTE3** (baseado em Bootstrap 4) com a flexibilidade do **TailwindCSS**, usado exclusivamente para gerar o tema escuro personalizado `dark_theme.css`.
 
 🔹 **AdminLTE3** fornece toda a estrutura de layout, componentes e JavaScript.  
@@ -28,12 +28,12 @@ O **FitApp** é um projeto Django que combina o poder do **AdminLTE3** (baseado 
 
 ---
 
-⚙️ Configuração Inicial do Ambiente
+## ⚙️ Configuração Inicial do Ambiente
 Após clonar o repositório, execute os passos abaixo apenas na primeira vez para configurar o ambiente local.
 
 ---
 
-🐍 Ambiente Python
+### 🐍 Ambiente Python
 Crie o ambiente virtual e instale as dependências do projeto:
 
 python -m venv .venv
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 python manage.py migrate
 
 
-🌿 Ambiente Node (Tailwind CSS)
+### 🌿 Ambiente Node (Tailwind CSS)
 O diretório node_modules/ está no .gitignore, portanto não será versionado.
 Instale as dependências Node apenas na primeira vez:
 
@@ -51,17 +51,17 @@ npm run watch:css
 
 ---
 
-🧩 Execução Durante o Desenvolvimento
+## 🧩 Execução Durante o Desenvolvimento
 Durante o desenvolvimento, use dois terminais abertos simultaneamente:
 
-💻 Terminal 1 — TailwindCSS
+### 💻 Terminal 1 — TailwindCSS
 Não é necessário ativar o .venv, pois o comando usa Node.js.
 Ele recompila automaticamente o dark_theme.css ao detectar mudanças nos templates HTML ou classes Tailwind:
 
 npm run watch:css
 
 
-🐍 Terminal 2 — Django
+### 🐍 Terminal 2 — Django
 Ative o ambiente virtual e execute o servidor de desenvolvimento:
 
 source .venv/bin/activate
@@ -72,7 +72,7 @@ http://127.0.0.1:8000/
 
 ---
 
-🎨 Estrutura Visual
+## 🎨 Estrutura Visual
 Tecnologia - Função
 AdminLTE 3 (Bootstrap 4) - Base do layout — navbar, sidebar, componentes e scripts JS.
 TailwindCSS - Responsável por gerar o arquivo dark_theme.css com o tema personalizado.
@@ -80,7 +80,7 @@ FontAwesome - Ícones visuais integrados ao AdminLTE.
 
 ---
 
-🧾 Observações Importantes
+## 🧾 Observações Importantes
 O arquivo dark_theme.css não deve ser editado manualmente.
 Todas as mudanças visuais devem ser feitas no input.css ou via classes Tailwind nos templates.
 
