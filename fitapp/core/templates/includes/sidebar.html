@@ -27,6 +27,7 @@
       {% with current_url=request.resolver_match.url_name %}
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
 
+        <!-- Dashboard -->
         <li class="nav-item">
           <a href="{% url 'profile:dashboard' %}"
              class="nav-link {% if current_url == 'dashboard' %}active{% endif %}">
@@ -35,6 +36,7 @@
           </a>
         </li>
 
+        <!-- Perfil -->
         <li class="nav-item">
           <a href="{% url 'profile:me_detail' %}"
              class="nav-link {% if current_url == 'me_detail' or current_url == 'me_edit' %}active{% endif %}">
@@ -43,6 +45,7 @@
           </a>
         </li>
 
+        <!-- Logout -->
         <li class="nav-item mt-3">
           <a href="{% url 'profile:logout' %}" class="nav-link logout">
             <i class="nav-icon fas fa-sign-out-alt"></i>

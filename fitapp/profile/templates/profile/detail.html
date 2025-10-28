@@ -1,71 +1,57 @@
-{% extends "base.html" %} {% block title %}Meu Perfil | FitApp{% endblock %} {%
-block page_title %}Meu Perfil{% endblock %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Meu Perfil | FitApp{% endblock %}
+{% block page_title %}Meu Perfil{% endblock %}
 
+{% block content %}
+<!-- Ajuste FitApp Neon -->
 <div class="row">
   <div class="col-lg-4">
-    <div class="card card-primary card-outline text-center">
+    <div class="card fitapp-card text-center">
       <div class="card-body box-profile">
         {% if user_obj.profile.photo %}
-        <img
-          class="profile-user-img img-fluid img-circle"
-          src="{{ user_obj.profile.photo.url }}"
-          alt="Foto do perfil"
-        />
+          <img class="profile-user-img img-fluid img-circle" src="{{ user_obj.profile.photo.url }}" alt="Foto do perfil">
         {% else %}
-        <div
-          class="profile-user-img img-fluid img-circle d-inline-flex align-items-center justify-content-center bg-secondary"
-          style="width: 128px; height: 128px"
-        >
-          <i class="fas fa-user fa-3x text-white-50"></i>
-        </div>
+          <div class="profile-user-img img-fluid img-circle d-inline-flex align-items-center justify-content-center bg-secondary" style="width: 128px; height: 128px">
+            <i class="fas fa-user fa-3x text-white-50"></i>
+          </div>
         {% endif %}
-        <h3 class="profile-username text-center mt-3">
-          {{ user_obj.get_full_name|default:user_obj.username }}
-        </h3>
-        <p class="text-muted text-center mb-2">{{ user_obj.email }}</p>
-        <a href="{% url 'profile:me_edit' %}" class="btn btn-primary btn-block"
-          >Editar Perfil</a
-        >
+        <h3 class="profile-username mt-3">{{ user_obj.get_full_name|default:user_obj.username }}</h3>
+        <p class="text-muted mb-2">{{ user_obj.email }}</p>
+        <a href="{% url 'profile:me_edit' %}" class="btn btn-success btn-block">Editar Perfil</a>
       </div>
     </div>
   </div>
+
   <div class="col-lg-8">
-    <div class="card card-outline card-secondary">
+    <div class="card fitapp-card">
       <div class="card-header">
-        <h3 class="card-title">Informações</h3>
+        <h3 class="card-title fitapp-title"><i class="fas fa-info-circle mr-2"></i>Informações</h3>
       </div>
       <div class="card-body">
         <dl class="row">
           <dt class="col-sm-4">Função</dt>
           <dd class="col-sm-8">{{ user_obj.profile.get_role_display }}</dd>
           {% if user_obj.profile.city %}
-          <dt class="col-sm-4">Cidade</dt>
-          <dd class="col-sm-8">{{ user_obj.profile.city }}</dd>
-          {% endif %} {% if user_obj.profile.specialty %}
-          <dt class="col-sm-4">Especialidade</dt>
-          <dd class="col-sm-8">{{ user_obj.profile.specialty }}</dd>
-          {% endif %} {% if user_obj.profile.height %}
-          <dt class="col-sm-4">Altura</dt>
-          <dd class="col-sm-8">{{ user_obj.profile.height }} m</dd>
-          {% endif %} {% if user_obj.profile.weight %}
-          <dt class="col-sm-4">Peso</dt>
-          <dd class="col-sm-8">{{ user_obj.profile.weight }} kg</dd>
-          {% endif %} {% if user_obj.profile.age %}
-          <dt class="col-sm-4">Idade</dt>
-          <dd class="col-sm-8">{{ user_obj.profile.age }}</dd>
-          {% endif %} {% if user_obj.profile.goal %}
-          <dt class="col-sm-4">Objetivo</dt>
-          <dd class="col-sm-8">{{ user_obj.profile.goal }}</dd>
-          {% endif %} {% if user_obj.profile.cref %}
-          <dt class="col-sm-4">CREF</dt>
-          <dd class="col-sm-8">{{ user_obj.profile.cref }}</dd>
+            <dt class="col-sm-4">Cidade</dt>
+            <dd class="col-sm-8">{{ user_obj.profile.city }}</dd>
+          {% endif %}
+          {% if user_obj.profile.specialty %}
+            <dt class="col-sm-4">Especialidade</dt>
+            <dd class="col-sm-8">{{ user_obj.profile.specialty }}</dd>
+          {% endif %}
+          {% if user_obj.profile.height %}
+            <dt class="col-sm-4">Altura</dt>
+            <dd class="col-sm-8">{{ user_obj.profile.height }} m</dd>
+          {% endif %}
+          {% if user_obj.profile.weight %}
+            <dt class="col-sm-4">Peso</dt>
+            <dd class="col-sm-8">{{ user_obj.profile.weight }} kg</dd>
+          {% endif %}
+          {% if user_obj.profile.age %}
+            <dt class="col-sm-4">Idade</dt>
+            <dd class="col-sm-8">{{ user_obj.profile.age }}</dd>
           {% endif %}
         </dl>
-        {% if user_obj.profile.bio %}
-        <hr />
-        <h5>Bio</h5>
-        <p class="mb-0">{{ user_obj.profile.bio|linebreaksbr }}</p>
-        {% endif %}
       </div>
     </div>
   </div>

@@ -543,3 +543,16 @@ body {
   text-shadow: 0 0 6px rgba(0, 255, 128, 0.6);
 }
 
+/* === UTILITÁRIOS FITAPP === */
+.fitapp-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.fitapp-card form label {
+  color: var(--fitapp-green);
+  font-weight: 500;
+}
+

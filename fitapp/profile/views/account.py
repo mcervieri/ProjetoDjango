@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -34,3 +35,13 @@ def me_edit(request):
         form = form_cls(instance=profile)
 
     return render(request, "profile/edit.html", {"form": form, "user_obj": user})
+
+
+def logout_on_login(request):
+    """
+    Garante que, se o usuário acessar /profile/login/ enquanto ainda está logado,
+    ele será deslogado automaticamente e redirecionado para a tela de login limpa.
+    """
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect("profile:login")

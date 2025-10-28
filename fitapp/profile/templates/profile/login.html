@@ -1,46 +1,34 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block title %}Login | FitApp{% endblock %}
+{% block body_class %}login-page{% endblock %}
 
-{% block body_class %}login-page dark-mode{% endblock %}
-
-{% block layout %}
-<!-- Wrapper para centralização total -->
-<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+{% block content_guest %}
+<!-- Ajuste FitApp Neon -->
+<div class="fitapp-center">
   <div class="login-box">
-
-    <!-- Logo -->
-    <div class="login-logo mb-3">
-      <a href="#" class="text-success" style="font-size: 2rem;">
-        <b>Fit</b>App
-      </a>
+    <div class="login-logo mb-4">
+      <a href="{% url 'home' %}" class="fitapp-title"><b>Fit</b>App</a>
     </div>
 
-    <!-- Card de login -->
-    <div class="card card-outline card-dark shadow-lg">
-      <div class="card-body login-card-body rounded">
+    <div class="card fitapp-card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg mb-4">Faça login para iniciar sua sessão</p>
 
-        <p class="login-box-msg text-muted mb-4">Faça login para iniciar sua sessão</p>
-
-        <!-- Formulário -->
         <form method="post" action="{% url 'profile:login' %}">
           {% csrf_token %}
-
           <div class="input-group mb-3">
-            <input type="text" name="username" class="form-control" placeholder="Usuário" required>
+            <input type="text" name="username" class="form-control fitapp-input" placeholder="Usuário" required>
             <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
+              <div class="input-group-text"><span class="fas fa-user fitapp-icon"></span></div>
             </div>
           </div>
 
           <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Senha" required>
+            <input type="password" name="password" class="form-control fitapp-input" placeholder="Senha" required>
             <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
+              <div class="input-group-text"><span class="fas fa-lock fitapp-icon"></span></div>
             </div>
           </div>
 
@@ -57,14 +45,9 @@
           </div>
         </form>
 
-        <!-- Links -->
-        <p class="mt-4 mb-1">
-          <a href="#" class="text-success">Esqueci minha senha</a>
-        </p>
-        <p class="mb-0">
+        <div class="mt-4 text-center">
           <a href="{% url 'profile:register' %}" class="text-success">Registrar nova conta</a>
-        </p>
-
+        </div>
       </div>
     </div>
   </div>
