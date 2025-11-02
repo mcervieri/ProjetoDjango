@@ -64,13 +64,11 @@
       </div>
       {% else %}
       <!-- === LAYOUT PÚBLICO (login, registro, etc.) === -->
-      <div class="content-wrapper" style="min-height: 100vh; background-color: #0b0b0f;">
-        <section class="content d-flex align-items-center justify-content-center">
-          <div class="container py-5">
-            {% include 'includes/messages.html' %}
-            {% block content_guest %}{% endblock %}
-          </div>
-        </section>
+      <div class="fitapp-login-bg">
+        <div class="fitapp-center">
+          {% include 'includes/messages.html' %}
+          {% block content_guest %}{% endblock %}
+        </div>
       </div>
       {% endif %}
     {% endblock %}

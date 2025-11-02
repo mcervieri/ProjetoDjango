@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Dashboard | FitApp{% endblock %}
 {% block page_title %}Dashboard{% endblock %}
@@ -6,9 +7,9 @@
 {% block content %}
 <div class="row">
   <div class="col-lg-12">
-    <div class="card card-neon">
+    <div class="card card-neon shadow-lg">
       <div class="card-header neon-header">
-        <h3 class="card-title">
+        <h3 class="card-title text-neon">
           <i class="fas fa-bolt"></i> Bem-vindo(a), {{ user.first_name|default:user.username }}
         </h3>
       </div>
@@ -24,7 +25,7 @@
 
 <div class="row mt-4">
   <div class="col-lg-3 col-6">
-    <div class="small-box neon-box green">
+    <div class="small-box neon-box">
       <div class="inner">
         <h3 class="count" data-target="5">0</h3>
         <p>Treinos Ativos</p>
@@ -35,7 +36,7 @@
   </div>
 
   <div class="col-lg-3 col-6">
-    <div class="small-box neon-box green">
+    <div class="small-box neon-box">
       <div class="inner">
         <h3 class="count" data-target="3">0</h3>
         <p>Planos Nutricionais</p>
@@ -46,7 +47,7 @@
   </div>
 
   <div class="col-lg-3 col-6">
-    <div class="small-box neon-box green">
+    <div class="small-box neon-box">
       <div class="inner">
         <h3 class="count" data-target="2">0</h3>
         <p>Metas Atingidas</p>
@@ -57,7 +58,7 @@
   </div>
 
   <div class="col-lg-3 col-6">
-    <div class="small-box neon-box green">
+    <div class="small-box neon-box">
       <div class="inner">
         <h3 class="count" data-target="7">0</h3>
         <p>Dias de Treino no Mês</p>
@@ -71,7 +72,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".count");
-  const speed = 120;
+  const speed = 100;
 
   counters.forEach(counter => {
     const updateCount = () => {

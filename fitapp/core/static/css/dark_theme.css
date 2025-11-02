@@ -1,77 +1,109 @@
+/* ==========================================================
+   FITAPP — BASE THEME.CSS (Neutro + Paleta FitApp)
+   ========================================================== */
+
 :root {
-  /* Paleta FitApp */
+  /* Paleta principal */
   --fitapp-green: #3CE17C;
   --fitapp-green-hover: #2cc76b;
-  --fitapp-dark-bg: #0d0d0d;
-  --fitapp-dark-card: #1e1e1e;
+  --fitapp-bg-light: #ffffff;
+  --fitapp-bg-dark: #0f0f12;
+  --fitapp-text-dark: #111111;
   --fitapp-text-light: #f5f5f5;
-  --fitapp-shadow-green: rgba(60, 225, 124, 0.25);
+  --fitapp-border: rgba(60, 225, 124, 0.3);
 
-  /* Efeitos globais */
+  /* Glass & layout */
   --fitapp-border-radius: 10px;
   --fitapp-blur: 8px;
   --fitapp-font: 'Inter', 'Poppins', sans-serif;
 }
 
-/* Tema base global */
+/* ===================== */
+/* BASE GLOBAL           */
+/* ===================== */
 body {
   font-family: var(--fitapp-font);
-  background: linear-gradient(135deg, var(--fitapp-dark-bg) 0%, #1b1b1b 100%);
-  color: var(--fitapp-text-light);
+  background: var(--fitapp-bg-light);
+  color: var(--fitapp-text-dark);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
 }
 
-/* Links e botões */
 a {
   color: var(--fitapp-green);
+  text-decoration: none;
+  transition: 0.2s ease;
 }
 a:hover {
   color: var(--fitapp-green-hover);
+  text-shadow: 0 0 4px var(--fitapp-green);
 }
 
-.btn-success, .btn-primary {
+/* ===================== */
+/* BOTÕES PADRÃO         */
+/* ===================== */
+.btn-success,
+.btn-primary {
   background-color: var(--fitapp-green);
   border-color: var(--fitapp-green);
   color: #000;
   font-weight: 600;
+  border-radius: 8px;
   transition: 0.2s ease;
 }
-.btn-success:hover, .btn-primary:hover {
+.btn-success:hover,
+.btn-primary:hover {
   background-color: var(--fitapp-green-hover);
   border-color: var(--fitapp-green-hover);
 }
 
-/* Card padrão FitApp */
-.fitapp-card {
-  background: rgba(17, 17, 17, 0.45);
-  border: 2px solid rgba(60, 225, 124, 0.6);
-  border-radius: var(--fitapp-border-radius);
-  box-shadow: 0 0 35px var(--fitapp-shadow-green);
-  backdrop-filter: blur(var(--fitapp-blur));
-  -webkit-backdrop-filter: blur(var(--fitapp-blur));
-  padding: 2rem;
-}
-
-/* Inputs */
-.fitapp-input {
-  background-color: #fff;
-  border: 2px solid var(--fitapp-green);
-  color: #111;
+/* ===================== */
+/* INPUTS / FORM CONTROLS*/
+/* ===================== */
+input,
+textarea,
+select {
   border-radius: 6px;
+  outline: none;
+  font-weight: 500;
   transition: 0.2s ease;
 }
-.fitapp-input:focus {
+
+input:focus,
+textarea:focus,
+select:focus {
   border-color: var(--fitapp-green-hover);
-  box-shadow: 0 0 6px var(--fitapp-shadow-green);
+  box-shadow: 0 0 6px rgba(60, 225, 124, 0.3);
 }
 
-/* Ícones */
+/* ===================== */
+/* TITULAÇÃO / ÍCONES    */
+/* ===================== */
+.fitapp-title {
+  color: var(--fitapp-green);
+  text-shadow: 0 0 8px rgba(60, 225, 124, 0.4);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  display: block;
+}
+
 .fitapp-icon {
   color: var(--fitapp-green);
   font-weight: 700;
 }
 
-/* Títulos */
-.fitapp-title {
-  color: var(--fitapp-green);
-  text-shadow: 0 0 10px rgba(60, 225, 124, 0.4);
+/* ===================== */
+/* SCROLLBAR (neutro)    */
+/* ===================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--fitapp-green);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background-color: #eaeaea;
 }

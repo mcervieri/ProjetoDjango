@@ -126,48 +126,12 @@ if os.environ.get("NO_MIGRATIONS") == "1":
     }
 
 # --- JAZZMIN SETTINGS ---
+# --- JAZZMIN SETTINGS (Padrão) ---
 JAZZMIN_SETTINGS = {
-    "custom_css": "/css/custom.css",
-    "site_title": "Painel Administrativo",
-    "site_header": "Admin",
-    "welcome_sign": "Bem-vindo ao painel",
-    "show_ui_builder": True,
-    "topmenu_links": [
-        {"name": "Início", "url": "admin:index", "permissions": ["auth.view_user"]},
-    ],
-    "icons": {
-        "auth": "fas fa-users-cog",
-        "auth.user": "fas fa-user",
-        "auth.Group": "fas fa-users",
-    },
-    "related_modal_active": True,
-    "navigation_expanded": False,
+    "site_title": "Django Admin",
+    "site_header": "Administração",
+    "welcome_sign": "Bem-vindo ao painel administrativo",
 }
 
-JAZZMIN_UI_TWEAKS = {
-    "navbar_small_text": False,
-    "footer_small_text": False,
-    "body_small_text": False,
-    "brand_small_text": False,
-    "accent": "accent-success",
-    "navbar": "navbar-dark",
-    "navbar_fixed": True,
-    "no_navbar_border": True,
-    "layout_boxed": False,
-    "sidebar_fixed": True,
-    "sidebar": "sidebar-dark-success",
-    "sidebar_nav_small_text": False,
-    "sidebar_disable_expand": True,
-    "sidebar_nav_child_indent": True,
-    "sidebar_nav_compact_style": True,
-    "theme": "darkly",
-    "dark_mode_theme": "darkly",
-    "button_classes": {
-        "primary": "btn-success",
-        "secondary": "btn-secondary",
-        "info": "btn-info",
-        "warning": "btn-warning",
-        "danger": "btn-danger",
-        "success": "btn-success",
-    },
-}
+# --- JAZZMIN UI TWEAKS (Padrão) ---
+JAZZMIN_UI_TWEAKS = {}

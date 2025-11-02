@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from ..forms.register import UserRegisterForm
+from ..models import Profile
+from ..models.choices import RolesChoices
 
 
 def register(request):
@@ -9,17 +11,19 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            role = user.profile.role
-            if role == "aluno":
+
+            profile = Profile.objects.get(user=user)
+            role = profile.role
+
+            if role == RolesChoices.ALUNO:
                 return redirect("profile:complete_aluno")
-            elif role == "nutricionista":
+            elif role == RolesChoices.NUTRICIONISTA:
                 return redirect("profile:complete_nutri")
-            elif role == "personal":
+            elif role == RolesChoices.PERSONAL:
                 return redirect("profile:complete_personal")
+
+            return redirect("profile:dashboard")
     else:
         form = UserRegisterForm()
+
     return render(request, "profile/register.html", {"form": form})
-
-
-def success(request):
-    return render(request, "profile/success.html")

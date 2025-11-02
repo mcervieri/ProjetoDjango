@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Logout{% endblock %}
+
+{% block content_guest %}
+  <div class="card text-center">
+    <div class="login-logo mb-3">
+      <a href="#"><b>FitApp</b></a>
+    </div>
+    <p class="login-box-msg">Você saiu da sua conta com sucesso.</p>
+    <a href="{% url 'profile:login' %}" class="btn btn-success mt-2">Entrar novamente</a>
+  </div>
+{% endblock %}

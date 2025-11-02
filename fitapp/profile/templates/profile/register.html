@@ -1,41 +1,22 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
-
-{% block title %}Registrar | FitApp{% endblock %}
-{% block body_class %}login-page{% endblock %}
+{% block title %}Registrar{% endblock %}
 
 {% block content_guest %}
-<!-- Ajuste FitApp Neon -->
-<div class="fitapp-center">
-  <div class="register-box">
-    <div class="register-logo mb-4">
-      <a href="{% url 'home' %}" class="fitapp-title"><b>Fit</b>App</a>
+  <div class="card text-center">
+    <div class="login-logo mb-3">
+      <a href="#"><b>FitApp</b></a>
     </div>
+    <p class="login-box-msg">Crie sua conta</p>
 
-    <div class="card fitapp-card">
-      <div class="card-body register-card-body">
-        <p class="login-box-msg">Crie sua conta gratuita</p>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success btn-block mt-2">Registrar</button>
+    </form>
 
-        {% include 'includes/messages.html' %}
-        <form method="post" novalidate>
-          {% csrf_token %}
-          {% for field in form %}
-          <div class="form-group mb-3">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {% if field.errors %}
-            <div class="invalid-feedback d-block">{{ field.errors|join:' ' }}</div>
-            {% endif %}
-          </div>
-          {% endfor %}
-          <button type="submit" class="btn btn-success btn-block">Registrar</button>
-        </form>
-
-        <p class="mt-3 text-center">
-          Já possui uma conta? <a href="{% url 'profile:login' %}" class="text-success">Entrar</a>
-        </p>
-      </div>
+    <div class="mt-3">
+      <a href="{% url 'profile:login' %}">Já tenho conta</a>
     </div>
   </div>
-</div>
 {% endblock %}

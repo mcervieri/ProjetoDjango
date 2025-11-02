@@ -1,25 +1,18 @@
-{% extends "base.html" %}
-{% block title %}Completar Perfil - Personal Trainer{% endblock %}
-{% block body_class %}login-page{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Completar Cadastro (Personal Trainer){% endblock %}
 
 {% block content_guest %}
-<!-- Ajuste FitApp Neon -->
-<div class="fitapp-center">
-  <div class="fitapp-card mx-auto" style="max-width:700px;">
-    <h3 class="fitapp-title mb-4 text-center">Complete seu perfil (Personal)</h3>
-    <form method="post" enctype="multipart/form-data" novalidate>
+  <div class="card text-center">
+    <div class="login-logo mb-3">
+      <a href="#"><b>FitApp</b></a>
+    </div>
+    <p class="login-box-msg">Complete seu cadastro de <b>Personal Trainer</b></p>
+
+    <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-      {% for field in form %}
-        <div class="form-group mb-3">
-          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-          {{ field }}
-          {% if field.errors %}
-            <div class="invalid-feedback d-block">{{ field.errors|join:' ' }}</div>
-          {% endif %}
-        </div>
-      {% endfor %}
-      <button type="submit" class="btn btn-success btn-block">Salvar</button>
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success btn-block mt-2">Salvar e continuar</button>
     </form>
   </div>
-</div>
 {% endblock %}

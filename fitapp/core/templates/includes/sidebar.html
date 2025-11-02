@@ -1,6 +1,5 @@
 {% load static %}
-<aside class="main-sidebar sidebar-dark-primary elevation-4 neon-sidebar">
-
+<aside class="main-sidebar bg-white border-right border-success-subtle">
   <!-- Logo -->
   <a href="{% url 'profile:dashboard' %}" class="brand-link text-center neon-brand">
     <img src="{% static 'images/logo.svg' %}" alt="FitApp Logo"
@@ -12,7 +11,7 @@
   <div class="sidebar">
 
     <!-- Usuário -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center border-bottom border-secondary neon-user">
+  <div class="user-panel ... border-bottom" style="border-color: rgba(60,225,124,0.15);">
       <div class="image">
         <i class="fas fa-user-circle fa-2x text-neon"></i>
       </div>
@@ -30,7 +29,7 @@
         <!-- Dashboard -->
         <li class="nav-item">
           <a href="{% url 'profile:dashboard' %}"
-             class="nav-link {% if current_url == 'dashboard' %}active{% endif %}">
+            class="nav-link {% if current_url == 'dashboard' %}active text-success{% else %}text-dark{% endif %}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           </a>

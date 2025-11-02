@@ -3,8 +3,8 @@ from fitapp.profile.views import (
     dashboard,
     register,
     aluno,
-    nutri,
     personal,
+    nutri,
     account,
     auth,
 )
@@ -20,13 +20,11 @@ urlpatterns = [
     path("register/", register.register, name="register"),
     # 📊 DASHBOARD
     path("dashboard/", dashboard.dashboard, name="dashboard"),
-    # 👥 COMPLETAR DADOS conforme a role
+    # 👥 COMPLETAR DADOS (conforme a role)
     path("complete/aluno/", aluno.complete_aluno, name="complete_aluno"),
-    path("complete/nutri/", nutri.complete_nutri, name="complete_nutri"),
     path("complete/personal/", personal.complete_personal, name="complete_personal"),
+    path("complete/nutri/", nutri.complete_nutri, name="complete_nutri"),
     # 👤 PERFIL PESSOAL (visualizar / editar)
     path("meu-perfil/", account.me_detail, name="me_detail"),
     path("meu-perfil/editar/", account.me_edit, name="me_edit"),
-    # ✅ PÁGINA DE SUCESSO GENÉRICA (ex: pós-registro)
-    path("success/", register.success, name="success"),
 ]
