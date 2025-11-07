@@ -1,32 +1,53 @@
 from django import forms
 from fitapp.profile.models import Profile
-from fitapp.profile.forms._mixins import AdminLTEFormMixin
+from fitapp.profile.models.choices import RolesChoices
 
 
-class AlunoForm(AdminLTEFormMixin, forms.ModelForm):
-    """Formulário de edição do perfil do Aluno."""
+class AlunoForm(forms.ModelForm):
+    personal = forms.ModelChoiceField(
+        queryset=Profile.objects.filter(role=RolesChoices.PERSONAL),
+        required=False,
+        label="Personal Trainer",
+        widget=forms.Select(attrs={"class": "form-control fitapp-input"}),
+    )
+
+    nutricionista = forms.ModelChoiceField(
+        queryset=Profile.objects.filter(role=RolesChoices.NUTRICIONISTA),
+        required=False,
+        label="Nutricionista",
+        widget=forms.Select(attrs={"class": "form-control fitapp-input"}),
+    )
 
     class Meta:
         model = Profile
         fields = [
             "photo",
-            "bio",
+            "age",
             "height",
             "weight",
-            "age",
             "goal",
-            "city",
+            "bio",
+            "personal",
+            "nutricionista",
         ]
         labels = {
             "photo": "Foto de Perfil",
-            "bio": "Sobre você",
+            "age": "Idade",
             "height": "Altura (cm)",
             "weight": "Peso (kg)",
-            "age": "Idade",
-            "goal": "Objetivo",
-            "city": "Cidade",
+            "goal": "Meta",
+            "bio": "Sobre você",
+            "personal": "Personal Trainer",
+            "nutricionista": "Nutricionista",
         }
-        help_texts = {
-            "photo": "Envie uma foto quadrada (ex: 400x400px) para seu perfil.",
-            "goal": "Ex: Ganho de massa, perda de peso, resistência...",
+        widgets = {
+            field: forms.TextInput(attrs={"class": "form-control fitapp-input"})
+            for field in ["age", "height", "weight", "goal"]
+        } | {
+            "bio": forms.Textarea(
+                attrs={"class": "form-control fitapp-input", "rows": 3}
+            ),
+            "photo": forms.ClearableFileInput(
+                attrs={"class": "form-control fitapp-input"}
+            ),
         }

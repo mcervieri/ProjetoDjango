@@ -1,22 +1,29 @@
 {% extends 'base.html' %}
-{% block title %}Editar Perfil do Aluno{% endblock %}
+{% block title %}Editar Perfil | FitApp{% endblock %}
+{% block page_title %}Editar Perfil do Aluno{% endblock %}
+
 {% block content %}
-<div class="content-wrapper p-4">
-  <div class="card neon-card mx-auto" style="max-width: 700px;">
-    <div class="card-header text-center text-neon">
-      <h3 class="mb-0"><i class="fas fa-edit me-2"></i>Editar Perfil do Aluno</h3>
-    </div>
-    <div class="card-body text-light">
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="text-center mt-3">
-          <button type="submit" class="btn btn-neon">
-            <i class="fas fa-save me-1"></i> Salvar Alterações
-          </button>
-          <a href="{% url 'profile:aluno_detail' %}" class="btn btn-secondary ms-2">Cancelar</a>
-        </div>
-      </form>
+<div class="row justify-content-center mt-4">
+  <div class="col-md-8">
+    <div class="card fitapp-card shadow-lg">
+      <div class="card-header neon-header d-flex align-items-center justify-content-between">
+        <h3 class="mb-0 text-neon"><i class="fas fa-edit me-2"></i>Editar Perfil</h3>
+      </div>
+
+      <div class="card-body text-light">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-save me-1"></i> Salvar Alterações
+            </button>
+            <a href="{% url 'profile:aluno_profile' %}" class="btn btn-secondary ms-2 px-4">
+              <i class="fas fa-times me-1"></i> Cancelar
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

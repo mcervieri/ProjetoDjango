@@ -36,3 +36,18 @@ class PersonalForm(AdminLTEFormMixin, forms.ModelForm):
             "specialty": "Ex: Treinamento de força, reabilitação, emagrecimento...",
             "cref": "Informe seu número de registro no Conselho Regional de Educação Física.",
         }
+        widgets = {
+            "photo": forms.ClearableFileInput(
+                attrs={"class": "form-control fitapp-input"}
+            ),
+            "bio": forms.Textarea(
+                attrs={"class": "form-control fitapp-input", "rows": 3}
+            ),
+            "height": forms.NumberInput(attrs={"class": "form-control fitapp-input"}),
+            "weight": forms.NumberInput(attrs={"class": "form-control fitapp-input"}),
+            "age": forms.NumberInput(attrs={"class": "form-control fitapp-input"}),
+            "goal": forms.TextInput(attrs={"class": "form-control fitapp-input"}),
+            "cref": forms.TextInput(attrs={"class": "form-control fitapp-input"}),
+            "specialty": forms.TextInput(attrs={"class": "form-control fitapp-input"}),
+            "city": forms.TextInput(attrs={"class": "form-control fitapp-input"}),
+        }

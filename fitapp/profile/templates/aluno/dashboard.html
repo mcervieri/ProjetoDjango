@@ -78,7 +78,7 @@
       </div>
       <div class="card-body text-light">
         {% if user.profile.nutricionista %}
-          <p>Você está acompanhado por <strong>{{ user.profile.nutricionista.user.first_name }}</strong>.</p>
+          <p>Você está acompanhado por <strong>{{ user.profile.nutricionista.user.first_name|default:user.profile.nutricionista.user.username }}</strong>.</p>
           <a href="#" class="btn btn-neon btn-sm">Ver plano alimentar</a>
         {% else %}
           <p class="text-muted">Nenhum nutricionista associado no momento.</p>
@@ -94,7 +94,7 @@
       </div>
       <div class="card-body text-light">
         {% if user.profile.personal %}
-          <p>Você treina com <strong>{{ user.profile.personal.user.first_name }}</strong>.</p>
+          <p>Você treina com <strong>{{ user.profile.personal.user.first_name|default:user.profile.personal.user.username }}</strong>.</p>
           <a href="#" class="btn btn-neon btn-sm">Ver plano de treino</a>
         {% else %}
           <p class="text-muted">Nenhum personal trainer associado no momento.</p>
@@ -102,6 +102,13 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- === BOTÃO PARA PERFIL COMPLETO === -->
+<div class="text-center mt-5">
+  <a href="{% url 'profile:aluno_profile' %}" class="btn btn-neon btn-lg px-5 py-2">
+    <i class="fas fa-user-circle"></i> Ver meu perfil completo
+  </a>
 </div>
 
 <!-- === ANIMAÇÃO DE CONTADORES === -->

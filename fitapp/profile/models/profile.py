@@ -16,6 +16,26 @@ class Profile(BaseModel, SlugBaseModel):
         default=RolesChoices.ALUNO,
     )
 
+    personal = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="alunos_personal",
+        limit_choices_to={"role__iexact": RolesChoices.PERSONAL},
+        verbose_name="Personal Trainer",
+    )
+
+    nutricionista = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="alunos_nutricionista",
+        limit_choices_to={"role__iexact": RolesChoices.NUTRICIONISTA},
+        verbose_name="Nutricionista",
+    )
+
     bio = models.TextField(null=True, blank=True)
     photo = models.ImageField(upload_to="profiles/%Y/%m/%d", null=True, blank=True)
     height = models.PositiveIntegerField(null=True, blank=True)
@@ -34,10 +54,9 @@ class Profile(BaseModel, SlugBaseModel):
         return f"{self.user.username} ({self.role})"
 
     def is_admin(self):
-        return self.role == RolesChoices.ADMIN
+        return self.role.strip().lower() == RolesChoices.ADMIN.strip().lower()
 
     def needs_completion(self):
-        """Retorna True se o usuário ainda não completou o cadastro."""
         return not self.is_completed
 
     def save(self, *args, **kwargs):
@@ -49,23 +68,15 @@ class Profile(BaseModel, SlugBaseModel):
         super().save(*args, **kwargs)
 
 
-# ==========================================================
-# 🔁 SIGNALS — cria e mantém o Profile sincronizado com o User
-# ==========================================================
-
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    """Cria um Profile automaticamente quando um novo User é registrado."""
     if created:
         Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    """Garante que o Profile seja salvo junto com o User."""
     try:
         instance.profile.save()
     except Profile.DoesNotExist:
-        # caso raro: se o profile não existir, cria na hora
         Profile.objects.create(user=instance)
