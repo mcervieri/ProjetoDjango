@@ -3,8 +3,11 @@ from fitapp.profile.views import (
     dashboard,
     register,
     aluno,
+    complete_aluno,
     personal,
+    complete_personal,
     nutri,
+    complete_nutri,
     account,
     auth,
 )
@@ -21,10 +24,18 @@ urlpatterns = [
     # 📊 DASHBOARD
     path("dashboard/", dashboard.dashboard, name="dashboard"),
     # 👥 COMPLETAR DADOS (conforme a role)
-    path("complete/aluno/", aluno.complete_aluno, name="complete_aluno"),
-    path("complete/personal/", personal.complete_personal, name="complete_personal"),
-    path("complete/nutri/", nutri.complete_nutri, name="complete_nutri"),
-    # 👤 PERFIL PESSOAL (visualizar / editar)
-    path("meu-perfil/", account.me_detail, name="me_detail"),
-    path("meu-perfil/editar/", account.me_edit, name="me_edit"),
+    path("complete/aluno/", complete_aluno.complete_aluno, name="complete_aluno"),
+    path(
+        "complete/personal/",
+        complete_personal.complete_personal,
+        name="complete_personal",
+    ),
+    path("complete/nutri/", complete_nutri.complete_nutri, name="complete_nutri"),
+    # 👤 PERFIS (visualizar / editar)
+    path("aluno/", aluno.aluno_detail, name="aluno_profile"),
+    path("aluno/editar/", aluno.aluno_edit, name="aluno_edit"),
+    path("nutri/", nutri.nutri_detail, name="nutri_profile"),
+    path("nutri/editar/", nutri.nutri_edit, name="nutri_edit"),
+    path("personal/", personal.personal_detail, name="personal_profile"),
+    path("personal/editar/", personal.personal_edit, name="personal_edit"),
 ]

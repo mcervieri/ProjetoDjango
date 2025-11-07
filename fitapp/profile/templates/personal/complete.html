@@ -1,0 +1,32 @@
+{% extends 'base_guest.html' %}
+{% load static %}
+
+{% block title %}Completar Cadastro (Personal Trainer) | FitApp{% endblock %}
+
+{% block content_guest %}
+<div class="login-card">
+  <div class="card neon-card shadow-lg p-4">
+    <div class="login-logo mb-3">
+      <a href="#" class="text-neon"><b>FitApp</b></a>
+    </div>
+    <p class="login-box-msg text-light">
+      Complete seu cadastro de <b>Personal Trainer</b>
+    </p>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="form-group mb-3 text-start">
+          <label class="text-neon" for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}
+            <small class="text-danger">{{ field.errors|striptags }}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-success btn-block mt-3">Salvar e continuar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

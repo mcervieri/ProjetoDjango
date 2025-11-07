@@ -96,9 +96,9 @@ label {
    ===================== */
 .login-card {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 90vh;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .neon-card {
@@ -107,31 +107,63 @@ label {
   border-radius: 15px;
   width: 360px;
   padding: 2rem;
+  box-shadow: 0 0 20px rgba(60, 225, 124, 0.15);
+  animation: neonGlow 3s ease-in-out infinite alternate;
 }
 
-.neon-input {
-  background: rgba(20, 20, 24, 0.6);
-  border: 1px solid rgba(60, 225, 124, 0.4);
-  color: #fff;
+@keyframes neonGlow {
+  from {
+    box-shadow: 0 0 15px rgba(60, 225, 124, 0.15);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(60, 225, 124, 0.35);
+  }
 }
 
-.neon-input::placeholder {
-  color: #9aeab6;
-  opacity: 0.8;
+.neon-card h3 {
+  color: var(--primary);
+  font-weight: 600;
 }
 
-.neon-input:focus {
-  border-color: #3CE17C;
-  box-shadow: 0 0 10px rgba(60, 225, 124, 0.4);
+.neon-card form {
+  text-align: left;
 }
 
-.border-neon {
-  border: 1px solid rgba(60, 225, 124, 0.5);
-  border-left: none;
+.neon-card label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: var(--primary);
 }
 
-.text-neon {
-  color: #3CE17C;
+.neon-card input,
+.neon-card select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #111;
+  color: #eee;
+  box-shadow: inset 0 0 4px rgba(60, 225, 124, 0.3);
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.neon-card input:focus,
+.neon-card select:focus {
+  outline: none;
+  box-shadow: 0 0 6px var(--primary);
+}
+
+.neon-card button {
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.neon-card a {
+  text-decoration: none;
 }
 
 /* Corrige checkbox lembrar-me */
@@ -227,3 +259,39 @@ label {
 ::-webkit-scrollbar-track {
   background: rgba(15, 15, 18, 0.95);
 }
+
+/* === FIX: rolagem em telas de formulário longas === */
+html, body, .wrapper, .content-wrapper {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  position: static !important;
+}
+
+body.layout-fixed .wrapper {
+  height: auto !important;
+}
+
+body.layout-fixed .content-wrapper {
+  height: auto !important;
+}
+
+/* === FIX EXTRA: impedir topo cortado nas páginas internas (complete, forms longos) === */
+body.layout-fixed .content-wrapper {
+  top: 0 !important;
+  padding-top: 70px !important; /* espaço para navbar */
+  overflow-y: auto !important;
+}
+
+.wrapper {
+  position: relative !important;
+  top: 0 !important;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+
+

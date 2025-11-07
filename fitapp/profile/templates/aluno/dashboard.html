@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}Dashboard | FitApp{% endblock %}
-{% block page_title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard do Aluno{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -15,14 +15,14 @@
       </div>
       <div class="card-body text-light">
         <p class="mb-0 text-muted">
-          Sua dashboard estará disponível em breve.<br>
-          Aqui você verá seus treinos, planos alimentares e progresso.
+          Aqui você pode acompanhar seu progresso, treinos e planos nutricionais personalizados.
         </p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- === MÉTRICAS === -->
 <div class="row mt-4">
   <div class="col-lg-3 col-6">
     <div class="small-box neon-box">
@@ -31,7 +31,7 @@
         <p>Treinos Ativos</p>
       </div>
       <div class="icon"><i class="fas fa-dumbbell"></i></div>
-      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="#" class="small-box-footer">Ver treinos <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
         <p>Planos Nutricionais</p>
       </div>
       <div class="icon"><i class="fas fa-apple-alt"></i></div>
-      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="#" class="small-box-footer">Ver planos <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -53,7 +53,7 @@
         <p>Metas Atingidas</p>
       </div>
       <div class="icon"><i class="fas fa-trophy"></i></div>
-      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="#" class="small-box-footer">Ver detalhes <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -64,11 +64,47 @@
         <p>Dias de Treino no Mês</p>
       </div>
       <div class="icon"><i class="fas fa-calendar-alt"></i></div>
-      <a href="#" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="#" class="small-box-footer">Ver histórico <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 </div>
 
+<!-- === PROFISSIONAIS ASSOCIADOS === -->
+<div class="row mt-4">
+  <div class="col-lg-6">
+    <div class="card card-neon shadow">
+      <div class="card-header neon-header">
+        <h3 class="card-title text-neon"><i class="fas fa-apple-alt"></i> Seu Nutricionista</h3>
+      </div>
+      <div class="card-body text-light">
+        {% if user.profile.nutricionista %}
+          <p>Você está acompanhado por <strong>{{ user.profile.nutricionista.user.first_name }}</strong>.</p>
+          <a href="#" class="btn btn-neon btn-sm">Ver plano alimentar</a>
+        {% else %}
+          <p class="text-muted">Nenhum nutricionista associado no momento.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card card-neon shadow">
+      <div class="card-header neon-header">
+        <h3 class="card-title text-neon"><i class="fas fa-dumbbell"></i> Seu Personal Trainer</h3>
+      </div>
+      <div class="card-body text-light">
+        {% if user.profile.personal %}
+          <p>Você treina com <strong>{{ user.profile.personal.user.first_name }}</strong>.</p>
+          <a href="#" class="btn btn-neon btn-sm">Ver plano de treino</a>
+        {% else %}
+          <p class="text-muted">Nenhum personal trainer associado no momento.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- === ANIMAÇÃO DE CONTADORES === -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".count");
@@ -99,4 +135,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
 {% endblock %}

@@ -28,7 +28,6 @@ class Profile(BaseModel, SlugBaseModel):
     city = models.CharField(max_length=100, null=True, blank=True)
     specialty = models.TextField(null=True, blank=True)
 
-    # 🆕 Flag para controle do cadastro completo
     is_completed = models.BooleanField(default=False)
 
     def __str__(self):

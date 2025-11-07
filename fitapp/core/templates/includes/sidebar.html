@@ -11,15 +11,31 @@
   <div class="sidebar">
 
     <!-- Usuário -->
-  <div class="user-panel ... border-bottom" style="border-color: rgba(60,225,124,0.15);">
+    {% if user.is_authenticated %}
+    <div class="user-panel d-flex align-items-center py-3 border-bottom" style="border-color: rgba(60,225,124,0.15);">
       <div class="image">
         <i class="fas fa-user-circle fa-2x text-neon"></i>
       </div>
       <div class="info ms-2">
-        <a href="{% url 'profile:me_detail' %}" class="d-block username">{{ user.first_name|default:user.username }}</a>
-        <small class="user-email">{{ user.email }}</small>
+        {% if user.profile.role == 'ALUNO' %}
+          <a href="{% url 'profile:aluno_profile' %}" class="d-block username text-neon">
+            {{ user.first_name|default:user.username }}
+          </a>
+        {% elif user.profile.role == 'NUTRI' %}
+          <a href="{% url 'profile:nutri_profile' %}" class="d-block username text-neon">
+            {{ user.first_name|default:user.username }}
+          </a>
+        {% elif user.profile.role == 'PERSONAL' %}
+          <a href="{% url 'profile:personal_profile' %}" class="d-block username text-neon">
+            {{ user.first_name|default:user.username }}
+          </a>
+        {% else %}
+          <span class="d-block username text-neon">{{ user.first_name|default:user.username }}</span>
+        {% endif %}
+        <small class="user-email text-muted">{{ user.email }}</small>
       </div>
     </div>
+    {% endif %}
 
     <!-- Menu -->
     <nav class="mt-2">
@@ -29,24 +45,39 @@
         <!-- Dashboard -->
         <li class="nav-item">
           <a href="{% url 'profile:dashboard' %}"
-            class="nav-link {% if current_url == 'dashboard' %}active text-success{% else %}text-dark{% endif %}">
+             class="nav-link {% if current_url == 'dashboard' %}active text-success{% else %}text-dark{% endif %}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           </a>
         </li>
 
-        <!-- Perfil -->
-        <li class="nav-item">
-          <a href="{% url 'profile:me_detail' %}"
-             class="nav-link {% if current_url == 'me_detail' or current_url == 'me_edit' %}active{% endif %}">
-            <i class="nav-icon fas fa-user"></i>
-            <p>Meu Perfil</p>
-          </a>
-        </li>
+        <!-- Perfil (dinâmico por role) -->
+        {% if user.profile.role == 'ALUNO' %}
+          <li class="nav-item">
+            <a href="{% url 'profile:aluno_profile' %}" class="nav-link {% if current_url == 'aluno_profile' %}active{% endif %}">
+              <i class="nav-icon fas fa-user-graduate"></i>
+              <p>Meu Perfil (Aluno)</p>
+            </a>
+          </li>
+        {% elif user.profile.role == 'NUTRI' %}
+          <li class="nav-item">
+            <a href="{% url 'profile:nutri_profile' %}" class="nav-link {% if current_url == 'nutri_profile' %}active{% endif %}">
+              <i class="nav-icon fas fa-apple-alt"></i>
+              <p>Meu Perfil (Nutri)</p>
+            </a>
+          </li>
+        {% elif user.profile.role == 'PERSONAL' %}
+          <li class="nav-item">
+            <a href="{% url 'profile:personal_profile' %}" class="nav-link {% if current_url == 'personal_profile' %}active{% endif %}">
+              <i class="nav-icon fas fa-dumbbell"></i>
+              <p>Meu Perfil (Personal)</p>
+            </a>
+          </li>
+        {% endif %}
 
         <!-- Logout -->
         <li class="nav-item mt-3">
-          <a href="{% url 'profile:logout' %}" class="nav-link logout">
+          <a href="{% url 'profile:logout' %}" class="nav-link logout text-danger">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Sair</p>
           </a>

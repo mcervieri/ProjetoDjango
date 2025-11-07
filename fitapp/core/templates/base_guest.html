@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}FitApp{% endblock %}</title>
+
+    <!-- Ícone -->
+    <link rel="icon" href="{% static 'images/logo.svg' %}" type="image/svg+xml" />
+
+    <!-- Fontes e Ícones -->
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/fontawesome-free/css/all.min.css' %}" />
+
+    <!-- AdminLTE -->
+    <link rel="stylesheet" href="{% static 'adminlte/dist/css/adminlte.min.css' %}" />
+
+    <!-- Tema FitApp (dark glass + neon green) -->
+    <link rel="stylesheet" href="{% static 'css/dark_theme.css' %}">
+    <style>
+      body {
+        background: radial-gradient(circle at top left, rgba(0,0,0,0.9), rgba(10,10,10,1));
+        color: #eaeaea;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 420px;
+        margin: 3rem auto;
+      }
+
+      .neon-card {
+      background: rgba(20, 20, 20, 0.85);
+      border: 1px solid rgba(60, 225, 124, 0.4);
+      border-radius: 20px !important; /* força arredondamento total */
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(60, 225, 124, 0.25);
+      overflow: hidden;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 2;
+      }
+
+      .neon-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px; /* acompanha o formato */
+      padding: 1px;
+      background: linear-gradient(145deg, rgba(60,225,124,0.8), rgba(0,0,0,0.4));
+      -webkit-mask: 
+          linear-gradient(#fff 0 0) content-box, 
+          linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      }
+
+      .card {
+      border-radius: 20px !important; /* sobrepõe o padrão do AdminLTE */
+      border: none !important;
+      }
+
+      .text-neon {
+        color: #3ce17c !important;
+      }
+
+      .btn-success {
+        background-color: #3ce17c;
+        border: none;
+      }
+
+      .btn-success:hover {
+        background-color: #2dc368;
+      }
+
+      input,
+      textarea,
+      select {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: #fff !important;
+        border: 1px solid rgba(60, 225, 124, 0.3);
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      label {
+        color: #3ce17c;
+      }
+    </style>
+  </head>
+
+  <body class="hold-transition login-page">
+    {% block content_guest %}{% endblock %}
+  </body>
+</html>

@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from ..forms.aluno import AlunoProfileForm
-from ..forms.nutri import NutriProfileForm
-from ..forms.personal import PersonalProfileForm
+from ..forms.aluno import AlunoForm
+from ..forms.nutri import NutriForm
+from ..forms.personal import PersonalForm
 
 
 @login_required
@@ -20,10 +20,10 @@ def me_edit(request):
     profile = user.profile
 
     form_cls = {
-        "aluno": AlunoProfileForm,
-        "nutricionista": NutriProfileForm,
-        "personal": PersonalProfileForm,
-    }.get(profile.role, AlunoProfileForm)
+        "aluno": AlunoForm,
+        "nutricionista": NutriForm,
+        "personal": PersonalForm,
+    }.get(profile.role, AlunoForm)
 
     if request.method == "POST":
         form = form_cls(request.POST, request.FILES, instance=profile)
